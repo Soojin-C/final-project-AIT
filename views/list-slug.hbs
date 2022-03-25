@@ -1,0 +1,25 @@
+<h2>{{list.name}}</h2>
+{{#if displayListItems}}
+<form method="POST" action="/list-item/check">
+<ul id="grocery-list">
+{{#each list.items}}
+{{#if this.checked}}
+<li class="checked"> {{this.quantity}} &times; {{this.name}}</li>
+{{else}}
+<li><label><input type="checkbox" name=items value="{{this.name}}">{{this.quantity}} &times; {{this.name}}</label></li>
+{{/if}}
+
+{{/each}}
+</ul>
+<input type="hidden" name="listSlug" value="{{list.slug}}">
+<input type="submit" value="Check off items">
+</form>
+{{/if}}
+
+<form method="POST" action="/list-item/create">
+<input type="text" class="qty" name="quantity" placeholder="qty"> &times; 
+<input type="text" name="name" placeholder="item">
+<input type="hidden" name="listSlug" value="{{list.slug}}">
+<input type="submit" value="Add to List">
+</form>
+

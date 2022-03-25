@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<link rel='stylesheet' href='/stylesheets/style.css'>
+</head>
+<body>
+<div id="wrapper">
+<div id="hd">
+{{#if user}}
+<div>Logged in as: {{user.username}} (<a href="/logout">Logout</a>)
+</div> 
+{{/if}}
+	<h1>Shoppy Shoperson</h1>
+</div>
+<div id="bd">
+{{{body}}}
+</div>
+<div id="ft">
+{{#if user}}
+	<a href="/">Home</a> | 
+	<a href="/list/">All Lists</a> | 
+	<a href="/list/create">Create a New List</a>
+{{/if}}
+</div>
+</div>
+</body>
+</html>
