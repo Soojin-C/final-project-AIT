@@ -1,12 +1,6 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
-
-(__TODO__: your project name_)
-
 # Note Keeper
 
 ## Overview
-
-(__TODO__: a brief one or two paragraph, high-level description of your project_)
 
 Have lots of ideas and things to do but can't find a simple solution to organize them? Have all the options that you've tried so far been either only well suited for only task control/notetaking or neither? Want to find an easy and clean solution?
 
@@ -15,15 +9,11 @@ Note Keeper is a web app that allows users to organize their thoughts and tasks 
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other_) 
-
 The application will store Users, Lists and Items
 
 * users can have multiple lists, folders and notes(via references)
 * each list can have multiple items (by embedding)
 * each folder can have multiple notes (by references)
-
-(__TODO__: sample documents_)
 
 An Example User:
 
@@ -65,7 +55,7 @@ An Example Note:
   - about some stuff
   - on the hw"
   linked: true
-  link: Tasks for AIT
+  link: //reference for List
   folder: //reference for Folder
 }
 ```
@@ -113,11 +103,19 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 (__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://www.mongodb.com/download-center?jmp=docs&_ga=1.47552679.1838903181.1489282706#previous)_)
 
 1. as non-registered user, I can register a new account with the site
-2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+2. as non-registered user, I can create a new note and list but cannot save
+3. as a user, I can log in to the site
+4. as a user, I can create a new task list
+5. as a user, I can create a new note
+6. as a user, I can create a new folder
+7. as a user, I can view all of the task lists I've created
+8. as a user, I can view all of the folders I've created
+9. as a user, I can view all of the notes lists I've created
+10. as a user, I can add items to a task list
+11. as a user, I can remove items off a task list
+12. as a user, I can edit a note
+13. as a user, I can delete a note
+14. as a user, I can custimize all the three: folders, notes, task lists
 
 ## Research Topics
 
