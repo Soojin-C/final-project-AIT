@@ -74,31 +74,40 @@ An Example Folder:
 
 ## [Link to Commented First Draft Schema](db.js) 
 
-(__TODO__: create a first draft of your Schemas in db.js and link to it_)
-
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
+/home - page for non signed in users
+![home](documentation/home.png)
 
-/list/create - page for creating a new shopping list
+/welcome - page for signed in users
+![welcome](documentation/welcome.png)
 
-![list create](documentation/list-create.png)
+/newList - page for creating a new list
+![newList](documentation/newList.png)
 
-/list - page for showing all shopping lists
-
+/list - page for editing a already made list
 ![list](documentation/list.png)
 
-/list/slug - page for showing specific shopping list
+/lists - page for viewing all lists made
+![lists](documentation/lists.png)
 
-![list](documentation/list-slug.png)
+/newNote - page for creating a new note
+![newNote](documentation/newNote.png)
+
+/note - page for editing a already made note
+![note](documentation/note.png)
+
+/notes - page for viewing all notes made
+![notes](documentation/notes.png)
+
+/folders - page for viewing all folders
+![folders](documentation/folders.png)
 
 ## Site map
 
-[sitemap](documentation/sitemap.png)
+![sitemap](documentation/sitemap.png)
 
 ## User Stories or Use Cases
-
-(__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://www.mongodb.com/download-center?jmp=docs&_ga=1.47552679.1838903181.1489282706#previous)_)
 
 1. as non-registered user, I can register a new account with the site
 2. as non-registered user, I can create a new note and list but cannot save
@@ -117,20 +126,14 @@ An Example Folder:
 
 ## Research Topics
 
-(__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
+* (3 points) Integrate user authentication
+    * I'm going to be using passport and JSON web tokens for user authentication and password decoding
+* (3 points) Perform Unit Tests with Mocha
+    * Perform both client and server side unit testing
+* (2 points) Bootstrap
+    * used Bootstrap as the frontend framework
 
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
-
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+8 points total out of 8 required points 
 
 
 ## [Link to Initial Main Project File](app.js) 
