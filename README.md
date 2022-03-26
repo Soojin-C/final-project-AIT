@@ -2,15 +2,15 @@ The content below is an example project proposal / requirements document. Replac
 
 (__TODO__: your project name_)
 
-# Shoppy Shoperson 
+# Note Keeper
 
 ## Overview
 
 (__TODO__: a brief one or two paragraph, high-level description of your project_)
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
+Have lots of ideas and things to do but can't find a simple solution to organize them? Have all the options that you've tried so far been either only well suited for only task control/notetaking or neither? Want to find an easy and clean solution?
 
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
+Note Keeper is a web app that allows users to organize their thoughts and tasks into list and notes. Users will login and create lists and notes that can be tagged and be customized. For more orginization, list items can link to notes and vice versa. 
 
 
 ## Data Model
@@ -19,8 +19,9 @@ Shoppy Shoperson is a web app that will allow users to keep track of multiple gr
 
 The application will store Users, Lists and Items
 
-* users can have multiple lists (via references)
+* users can have multiple lists, folders and notes(via references)
 * each list can have multiple items (by embedding)
+* each folder can have multiple notes (by references)
 
 (__TODO__: sample documents_)
 
@@ -28,9 +29,11 @@ An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
-  hash: // a password hash,
-  lists: // an array of references to List documents
+  user: "schoi",
+  token: // a password token for this specific user,
+  lists: // an array of references to List documents,
+  folders: // array of references to Folder documents,
+  notes: // array of references to Note documents
 }
 ```
 
@@ -39,12 +42,42 @@ An Example List with Embedded Items:
 ```javascript
 {
   user: // a reference to a User object
-  name: "Breakfast foods",
+  title: "Tasks for AIT",
+  font: //name of class that sets the font of choices,
+  color: "pink",
   items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
-  ],
-  createdAt: // timestamp
+    { num: 1, text: "Quiz 7", checked: false, linked:false, link: null},
+    { num: 2, text: "hw 5", checked: true, linked:true, link: //Note Reference},
+  ]
+}
+```
+
+An Example Note:
+
+```javascript
+{
+  user: // a reference to a User object
+  id: //unique number for each note
+  title: "Notes on Mongo",
+  font: //name of class that sets the font of choices,
+  color: "pink",
+  text: "- Wow some notes and stuff
+  - about some stuff
+  - on the hw"
+  linked: true
+  link: Tasks for AIT
+  folder: //reference for Folder
+}
+```
+
+An Example Folder:
+
+```javascript
+{
+  user: // a reference to a User object
+  name: "Notes for hw",
+  color: "pink",
+  notes: // Array of references to Note documents
 }
 ```
 
