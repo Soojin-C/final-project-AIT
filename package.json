@@ -20,7 +20,6 @@
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
-    "mongoose": "^6.2.7",
     "mongoose-url-slugs": "^0.1.4",
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
@@ -28,6 +27,7 @@
   },
   "devDependencies": {
     "eslint": "^8.11.0",
-    "eslint-plugin-mocha": "^10.0.3"
+    "eslint-plugin-mocha": "^10.0.3",
+    "mongoose": "^6.2.10"
   }
 }
