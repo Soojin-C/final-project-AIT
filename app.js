@@ -42,4 +42,4 @@ app.use('/', routes);
 app.use('/list', list);
 app.use('/list-item', listItem);
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
