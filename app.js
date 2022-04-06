@@ -1,3 +1,4 @@
+require("dotenv").config({ silent: true });
 
 require('./db');
 require('./auth');
