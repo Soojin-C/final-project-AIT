@@ -56,4 +56,6 @@ mongoose.model('List', List);
 mongoose.model('Item', Item);
 mongoose.model('Folder', Folder);
 mongoose.model('Note', Note);
-mongoose.connect('mongodb://localhost/tasksdb');
+mongoose.connect('mongodb+srv://testUser:pass123@usercredentials.5xunp.mongodb.net/UserCredentials?retryWrites=true&w=majority', () => {
+	console.log("DB connection state: " + mongoose.connection.readyState);
+  });
