@@ -1,10 +1,9 @@
-const mongoose = require('mongoose'),
-	URLSlugs = require('mongoose-url-slugs'),
-  passportLocalMongoose = require('passport-local-mongoose');
+const mongoose = require('mongoose');
+//passportLocalMongoose = require('passport-local-mongoose');
 
 
 const User = new mongoose.Schema({
-  user: {type: String, required: true}, 
+  user: {type: String, unique: true, required: true}, 
   token: {type: String, required: true},
   lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }],
   folders:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Folder' }],
@@ -47,9 +46,6 @@ const Folder = new mongoose.Schema({
 	notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }]
 });
 
-
-User.plugin(passportLocalMongoose);
-List.plugin(URLSlugs('name'));
 
 mongoose.model('User', User);
 mongoose.model('List', List);
