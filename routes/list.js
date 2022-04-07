@@ -10,9 +10,9 @@ const isAuthenticated = (req, res, next) => {
   } else {
     next();
   }
-}
+};
 
-router.use(isAuthenticated)
+router.use(isAuthenticated);
 
 router.get('/', (req, res) => {
 	List.find({user: req.user ? req.user._id : undefined}, (err, lists, count) => {
