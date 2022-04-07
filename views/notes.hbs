@@ -1,0 +1,16 @@
+<h2>All Notes</h2> 
+
+<a type="button" class="btn btn-outline-secondary" href="/notes/newNote"> Add a new note </a>
+
+{{#each notes}}
+<div id = "notes">
+    <div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">{{this.text}}</p>
+        <a href="/notes/{{this.id}}" class="btn btn-outline-primary">Edit</a>
+        <a href="/notes/delete/{{this.id}}" class="btn btn-outline-danger">Delete</a>
+    </div>
+    </div>
+</div>
+{{/each}}

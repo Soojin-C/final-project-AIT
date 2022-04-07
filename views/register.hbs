@@ -1,6 +1,21 @@
-<form method="POST" action="">
-	<div class='form-row'><label>Username:</label> <input name="username" type="text"></div>
-	<div class='form-row'><label>Password:</label> <input name="password" type="password"></div>
-	<div class='form-row'><input type="submit" value="Register"></div>
+<form id = "wrapper" method="POST" action="/register">
+	{{error}}
+	<div class="row align-items-center">
+		<div class="col-auto">
+			<label for="inputUsername" class="col-form-label">Username</label>
+		</div>
+		<div class="col-auto">
+			<input name="username" type="text" id="inputUsername" class="form-control" required>
+		</div>
+	</div>
+	<div class="row align-items-center">
+		<div class="col-auto">
+			<label for="inputPassword" class="col-form-label">Password</label>
+		</div>
+		<div class="col-auto">
+			<input name="password" type="password" id="inputPassword" class="form-control" required>
+		</div>
+	</div>
+	<button type="submit" class="btn btn-primary">Register</button>
 	<div class='form-row'>Already have an account? <a href="/login">Login</a>.</div>
 </form>

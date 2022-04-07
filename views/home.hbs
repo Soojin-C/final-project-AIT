@@ -1,7 +1,11 @@
 {{#if user}}
 <p>
-Hi {{user.username}}. Let's go shopping!
+Hi {{user.username}}.
+<br/>
+<a type="button" class="btn btn-outline-secondary" href="/notes/newNote"> Create a New Note</a>
+<a type="button" class="btn btn-outline-secondary" href="#" aria-disabled> Create a New List</a>
 </p>
 {{else}}
-<a href="/login">Login</a> or <a href="/register">Register</a> to create a grocery list.
+{{user}}
+<a href="/login">Login</a> or <a href="/register">Register</a>
 {{/if}}
