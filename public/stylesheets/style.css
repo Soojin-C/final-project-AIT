@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -20,6 +19,7 @@ form {
 	width:500px;
 	padding:2em;
   	background-color:#eee;
+	text-align: center;
 }
 
 #grocery-list {
