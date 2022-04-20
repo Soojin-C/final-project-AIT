@@ -1,0 +1,23 @@
+<form id = "wrapper" method="POST" action="/lists/save">
+	<div class="row align-items-center">
+		<div class="col-auto">
+			<label for="inputTitle" class="col-form-label">Title:</label>
+		</div>
+		<div class="col-auto">
+			<input name="title" type="text" id="inputTitle" class="form-control form-control-sm" required>
+		</div>
+	</div>
+    <div id="items" class="row align-items-center">
+	</div>
+	<div class="row align-items-center">
+        <div class="col-auto">
+			<input name="newItem" type="text" id="inputItem" class="form-control form-control-sm">
+		</div>
+		<div class="col-auto">
+			<button id="addItem" class="btn btn-primary">+</button>
+		</div>
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<script src="/javascript/main.js"></script>

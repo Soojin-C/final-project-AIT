@@ -1,0 +1,20 @@
+<h2>All Lists</h2> 
+
+<a type="button" class="btn btn-outline-secondary" href="/lists/newList"> Add a new List </a>
+
+{{#each lists}}
+<div id = "lists">
+    <div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <ul>
+            {{#each this.items}}
+                <li> {{this}} </li>
+            {{/each}}
+        </ul>
+        <a href="/lists/{{this.id}}" class="btn btn-outline-primary">Edit</a>
+        <a href="/lists/delete/{{this.id}}" class="btn btn-outline-danger">Delete</a>
+    </div>
+    </div>
+</div>
+{{/each}}
