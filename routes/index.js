@@ -1,6 +1,7 @@
 const express = require('express'), 
     router = express.Router(),
     mongoose = require('mongoose'),
+    //passport = require('passport'),
     User = mongoose.model('User');
 
   const bcrypt = require("bcrypt");
@@ -19,6 +20,10 @@ router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
 });
+
+//router.get('/', passport.authenticate("jwt", { session: false }), (req, res) => {
+//  res.render('home', {"heading": "Welcome to Note Keeper", user: req.session.user});
+//});
 
 router.get('/', (req, res) => {
   res.render('home', {"heading": "Welcome to Note Keeper", user: req.session.user});
@@ -58,7 +63,8 @@ router.post('/register', (req, res) => {
         //console.log(token);
         req.session.user = {user: newUser, username: username, ID: newUser.id, token: token};
         res.setHeader('Authorization', `JWT ${req.session.user.token}`);
-        res.render("home", {"heading": "Welcome to Note Keeper", user: req.session.user});
+        res.redirect("/");
+        //res.render("home", {"heading": "Welcome to Note Keeper", user: req.session.user});
       }
     });
   });
@@ -85,7 +91,8 @@ router.post('/login', (req, res) => {
           const token = jwt.sign(payload, jwtOptions.secretOrKey); // create a signed token
           req.session.user = {user: users, username: username, ID: users.id, token: token};
           res.setHeader('Authorization', `JWT ${req.session.user.token}`);
-          res.render("home", {"heading": "Welcome to Note Keeper", user: req.session.user});
+          res.redirect("/");
+          //res.render("home", {"heading": "Welcome to Note Keeper", user: req.session.user});
         } 
       });
     }

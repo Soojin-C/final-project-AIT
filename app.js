@@ -5,7 +5,7 @@ const express = require('express');
 const path = require('path');
 
 const routes = require('./routes/index');
-//const list = require('./routes/list');
+const list = require('./routes/list');
 //const listItem = require('./routes/list-item');
 const notes = require('./routes/notes');
 
@@ -48,7 +48,7 @@ const jwtStrategy = require("./jwt-config").jwtStrategy;
 passport.use(jwtStrategy);
 
 app.use('/', routes);
-//app.use('/list', list);
+app.use('/lists', list);
 //app.use('/list-item', listItem);
 app.use('/notes', notes);
 

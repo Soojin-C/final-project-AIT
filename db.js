@@ -11,9 +11,8 @@ const User = new mongoose.Schema({
 });
 
 const Item = new mongoose.Schema({
-	name: {type: String, required: true},
+	list: {type: mongoose.Schema.Types.ObjectId, ref:'List'},
 	text: {type: String, required: true},
-	checked: {type: Boolean, default: false, required: true},
 	linked: {type: Boolean, default: false, required: true},
 	link: {type: mongoose.Schema.Types.ObjectId, ref:'Note'}
 }, {
@@ -23,10 +22,10 @@ const Item = new mongoose.Schema({
 
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-  name: {type: String, required: true},
+  title: {type: String, required: true},
   font: {type: String, required: true},
   color: {type: String, required: true},
-  items: [Item]
+  items: [{type: String}]
 });
 
 const Note = new mongoose.Schema({
