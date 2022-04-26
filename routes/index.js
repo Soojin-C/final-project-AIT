@@ -21,10 +21,6 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-//router.get('/', passport.authenticate("jwt", { session: false }), (req, res) => {
-//  res.render('home', {"heading": "Welcome to Note Keeper", user: req.session.user});
-//});
-
 router.get('/', (req, res) => {
   res.render('home', {"heading": "Welcome to Note Keeper", user: req.session.user});
 });
@@ -38,10 +34,7 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-  //console.log(req.body);
   const {username, password} = req.body;
-  //console.log(username);
-  //console.log(password);
 
   bcrypt.hash(password, saltRounds).then(function (hash) {
     const newUser = new User({ user: username, token: hash, lists:[], folders:[], notes:[] });
@@ -49,11 +42,11 @@ router.post('/register', (req, res) => {
       if (err) {
         console.log(err);
         if (err.name === "MongoServerError" && err.code === 11000) {
-          res.render("register", {heading: "Sign Up", error: "Username already exists"});
+          res.status(401).render("register", {heading: "Sign Up", error: "Username already exists"});
         }
         // Some other error
         else{
-          res.render("register", {heading: "Sign Up",error: err});
+          res.status(401).render("register", {heading: "Sign Up",error: err});
         }
       }
       else{
@@ -63,7 +56,7 @@ router.post('/register', (req, res) => {
         //console.log(token);
         req.session.user = {user: newUser, username: username, ID: newUser.id, token: token};
         res.setHeader('Authorization', `JWT ${req.session.user.token}`);
-        res.redirect("/");
+        res.status(200).redirect("/");
         //res.render("home", {"heading": "Welcome to Note Keeper", user: req.session.user});
       }
     });
@@ -77,21 +70,21 @@ router.post('/login', (req, res) => {
   User.findOne({ user: username }, "token", function (err, users) {
     if (users === null || err){
       console.log(err);
-      res.render("login", {header: "Login", error: "Wrong info"});
+      res.status(401).render("login", {header: "Login", error: "Wrong info"});
     }
     else {
       const retPass = users.token;
       // assuming we found the user, check the password is correct
       bcrypt.compare(password, retPass, function (err, result) {
         if (err){
-          res.render("login", {header: "Login", error: "Password is incorrect"});
+          res.status(401).render("login", {header: "Login", error: "Password is incorrect"});
         }
         if (result) {
           const payload = { id: users.id }; // some data we'll encode into the token
           const token = jwt.sign(payload, jwtOptions.secretOrKey); // create a signed token
           req.session.user = {user: users, username: username, ID: users.id, token: token};
           res.setHeader('Authorization', `JWT ${req.session.user.token}`);
-          res.redirect("/");
+          res.status(200).redirect("/");
           //res.render("home", {"heading": "Welcome to Note Keeper", user: req.session.user});
         } 
       });

@@ -12,12 +12,6 @@ const folders = require('./routes/folders');
 
 const app = express();
 
-// =================== LOGIN setup =====================
-
-const passport = require('passport');
-
-// ================= END LOGIN setup ==================
-
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -29,17 +23,13 @@ const sessionOptions = {
     resave: true,
     saveUninitialized: true
 };
+
 app.use(session(sessionOptions)); 
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
-
-
-// passport setup
-app.use(passport.initialize());
-app.use(passport.session());
 /*
 // make user data available to all templates
 app.use((req, res, next) => {
@@ -47,8 +37,8 @@ app.use((req, res, next) => {
   next();
 }); 
 */
-const jwtStrategy = require("./jwt-config").jwtStrategy;
-passport.use(jwtStrategy);
+
+
 
 app.use('/', routes);
 app.use('/lists', list);

@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 
 const User = new mongoose.Schema({
   user: {type: String, unique: true, required: true}, 
-  token: {type: String, required: true},
-  hash: {type: String, required: true}
+  token: {type: String, required: true}
 });
 
 const Item = new mongoose.Schema({
