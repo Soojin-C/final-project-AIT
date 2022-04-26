@@ -63,7 +63,7 @@ function main(){
                 mainWrap.removeChild(l);
 
                 const label = document.createElement("a");
-                label.setAttribute("class", "btn link");
+                label.setAttribute("class", "col-4 btn link");
                 label.setAttribute("data-bs-toggle", "offcanvas");
                 label.setAttribute("href", "#canvasNote");
                 label.setAttribute("role", "button");
@@ -71,7 +71,11 @@ function main(){
                 const icon = document.createElement("i");
                 icon.setAttribute("class", "bi bi-link");
                 label.appendChild(icon);
-                const t = document.createTextNode(evt.target.text);
+                let text = evt.target.text;
+                if (text.length > 12) {
+                    text = text.slice(0,12) + ' ...';
+                }
+                const t = document.createTextNode(text);
                 label.appendChild(t);
 
                 label.addEventListener("click", openCanvas);

@@ -7,12 +7,15 @@
     <div class="card {{this.color}}" style="width: 18rem;">
     <div class="card-body">
         <div class= "{{this.font}}">
-            <h5 class="card-title">{{this.title}}</h5>
+            <h5 class="card-title b-titleRestrict">{{this.title}}</h5>
             <ul>
                 {{#each this.items}}
                     <li>
                     {{#if this.linked}}
-                        <a href = "/notes/{{this.link}}"> {{this.text}} </a>
+                        <a href = "/notes/{{this.link}}" class="btn"> 
+                            <i class="bi bi-link"></i>
+                            <span class="titleRestrict"> {{this.text}} </span> 
+                        </a>
                     {{else}}
                          {{this.text}} 
                     {{/if}}
@@ -26,3 +29,5 @@
     </div>
 </div>
 {{/each}}
+
+<script src="/javascript/titleRestrict.js"></script>

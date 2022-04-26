@@ -84,6 +84,25 @@ router.get('/:folderID', async (req, res) => {
     res.render('folder.hbs', {folder:folderData, newNotes: newNotes, alreadyAdded: alreadyAdded, user: req.session.user});
 });
 
+router.get('/deleteFolder/:folderID', (req, res) => {
+	const {folderID} = req.params;
+    Folder.deleteOne({_id: folderID}, (err)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            NoteFolder.deleteMany({folderid: folderID}, (err)=>{
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    res.redirect(`/folders/`);
+                }
+            });
+        }
+    });
+});
+
 router.get('/delete/:folderID/:noteID', (req, res) => {
 	const {folderID, noteID} = req.params;
     console.log(req.params);

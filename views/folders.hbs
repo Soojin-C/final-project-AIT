@@ -10,9 +10,9 @@
         <span class="{{this.color}} folderIcons">
             <i class="bi bi-folder2"></i>
         </span>
-        <h5>{{this.name}}</h5>
+        <h5 class="titleRestrict">{{this.name}}</h5>
     </a>
-    <a href="/folders/delete/{{this.id}}" class="btn btn-outline-danger">Delete</a>
+    <a href="/folders/deleteFolder/{{this.id}}" class="btn btn-outline-danger">Delete</a>
 </div>
 {{/each}}
 
@@ -48,3 +48,4 @@
 </div>
 
 <script src="/javascript/folders.js"></script>
+<script src="/javascript/titleRestrict.js"></script>

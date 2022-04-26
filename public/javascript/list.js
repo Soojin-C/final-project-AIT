@@ -9,7 +9,7 @@ function main(){
         const input = document.querySelector("#inputItem");
         if (input.value !== ""){
             const mainWrap = document.createElement("div");
-            mainWrap.setAttribute("class", "d-flex flex-row");
+            mainWrap.setAttribute("class", "row");
 
             const id = document.createElement("input");
             id.setAttribute("class", "form-control-plaintext");
@@ -21,7 +21,7 @@ function main(){
 
             const newItem = document.createElement("input");
             newItem.setAttribute("type", 'text');
-            newItem.setAttribute("class", "form-control");
+            newItem.setAttribute("class", "col form-control form-control-sm");
             newItem.setAttribute("id", `item`);
             newItem.setAttribute("name", "items");
             newItem.value = input.value;
@@ -29,7 +29,7 @@ function main(){
             mainWrap.appendChild(newItem);
 
             const delbtn = document.createElement("button");
-            delbtn.setAttribute("class", `del del${count} btn btn-danger`);
+            delbtn.setAttribute("class", `col-2 del del${count} btn btn-danger`);
             delbtn.setAttribute("id", `del${count}`);
 
             let text = document.createTextNode("Delete");
@@ -41,7 +41,7 @@ function main(){
             input.value = "";
 
             const linkbtn = document.createElement("a");
-            linkbtn.setAttribute("class", "btn btn-primary linker-btn");
+            linkbtn.setAttribute("class", "col-4 btn btn-primary linker-btn");
             linkbtn.setAttribute("id", `linker${count}`);
             linkbtn.setAttribute("data-bs-toggle", "modal");
             linkbtn.setAttribute("data-bs-target", "#exampleModal");
@@ -115,7 +115,7 @@ function main(){
                     mainWrap.removeChild(l);
 
                     const label = document.createElement("a");
-                    label.setAttribute("class", "btn link");
+                    label.setAttribute("class", "col-4 btn link");
                     label.setAttribute("data-bs-toggle", "offcanvas");
                     label.setAttribute("href", "#canvasNote");
                     label.setAttribute("role", "button");
@@ -123,7 +123,12 @@ function main(){
                     const icon = document.createElement("i");
                     icon.setAttribute("class", "bi bi-link");
                     label.appendChild(icon);
-                    const t = document.createTextNode(evt.target.text);
+                    label.appendChild(icon);
+                    let text = evt.target.text;
+                    if (text.length > 12) {
+                        text = text.slice(0,12) + ' ...';
+                    }
+                    const t = document.createTextNode(text);
                     label.appendChild(t);
 
                     label.addEventListener("click", openCanvas);
