@@ -3,26 +3,8 @@ const express = require('express'),
 	mongoose = require('mongoose'),
 	List = mongoose.model('List'),
     Item = mongoose.model('Item'),
-    Note = mongoose.model('Note');
-
-router.get('/', async (req, res) => {
-    List.find({user: req.session.user.user}, (err, lists)=>{
-        if(err){
-            console.log(err);
-        }
-        else{
-            const ret = async() =>{
-                for(const list of lists){
-                    const items = await Item.find({user: req.session.user.user});
-                    console.log(items);
-                    list.items = items;
-                }
-                res.render('lists.hbs', {user: req.session.user, lists: lists});
-            };
-            ret();
-        }
-    });
-});
+    Note = mongoose.model('Note'),
+    NoteFolder = mongoose.model('NoteFolder');
 
 router.get('/newList', (req, res) => {
     Note.find({user: req.session.user.user}, (err, notes) => {
@@ -64,15 +46,17 @@ router.post('/save', (req, res) => {
     res.redirect('/lists');
 });
 
-router.post('/save/:listID', (req, res) => {
-    const {listID} = req.params;
-    const changes = {title: req.body.title, font: req.body.fontlist, color: req.body.colorlist, items: req.body.items};
-    List.findByIdAndUpdate(listID, changes, (err)=>{
+router.post('/saveNoteTo/:folderID', (req, res) => {
+    const {folderID} = req.params;
+    const noteid = req.body.noteid;
+    const newLinker = new NoteFolder({user:req.session.user.user, noteid: noteid, folderid: folderID});
+    newLinker.save((err)=>{
         if(err){
             console.log(err);
         }
         else{
-            res.redirect("/lists");
+            //res.redirect(`/folders/${folderID}`);
+            res.send({status: 200});
         }
     });
 });

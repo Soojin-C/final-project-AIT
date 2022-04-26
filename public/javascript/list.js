@@ -21,6 +21,7 @@ function main(){
 
             const newItem = document.createElement("input");
             newItem.setAttribute("type", 'text');
+            newItem.setAttribute("class", "form-control");
             newItem.setAttribute("id", `item`);
             newItem.setAttribute("name", "items");
             newItem.value = input.value;

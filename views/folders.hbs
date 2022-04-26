@@ -1,0 +1,50 @@
+<h2>All Folders</h2> 
+
+<a type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#folderAddModal">
+    Add a new Folder
+</a>
+
+{{#each folders}}
+<div id = "lists">
+    <a href="/folders/{{this.id}}" style="width: 12rem;" class="btn d-flex flex-column justify-content-start align-items-center">
+        <span class="{{this.color}} folderIcons">
+            <i class="bi bi-folder2"></i>
+        </span>
+        <h5>{{this.name}}</h5>
+    </a>
+    <a href="/folders/delete/{{this.id}}" class="btn btn-outline-danger">Delete</a>
+</div>
+{{/each}}
+
+<!-- Modal -->
+<div class="modal fade" id="folderAddModal" tabindex="-1" aria-labelledby="folderAddModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="folderAddModalLabel">Add a new folder</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="newFolderForm"method="POST" action="/folders/newFolder">
+      <div class="modal-body d-flex flex-column justify-content-start align-items-center">
+            <span id="folderIcon" class="fc-black"><i class="bi bi-folder2"></i></span>
+            <label class="col-2 sr-only" for="newName">New Title:</label>
+            <input type="text" id="newName" name="folderName" class="form-control" placeholder="Add a new title" maxlength="35" required></input>
+            <label class="col-2" for="colors">Color:</label>
+            <select class="form-control  col-4" id="colors" name="folderColor" form="newFolderForm">
+                <option value="fc-black">Black</option>
+                <option value="fc-red">Red</option>
+                <option value="fc-yellow">Yellow</option>
+                <option value="fc-green">Green</option>
+                <option value="fc-blue">Blue</option>
+                <option value="fc-purple">Purple</option>
+            </select>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Create Folder</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="/javascript/folders.js"></script>

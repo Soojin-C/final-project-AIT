@@ -8,6 +8,7 @@ const routes = require('./routes/index');
 const list = require('./routes/list');
 const items = require('./routes/items');
 const notes = require('./routes/notes');
+const folders = require('./routes/folders');
 
 const app = express();
 
@@ -53,5 +54,6 @@ app.use('/', routes);
 app.use('/lists', list);
 app.use('/api', items);
 app.use('/notes', notes);
+app.use('/folders', folders);
 
 app.listen(process.env.PORT || 3000);

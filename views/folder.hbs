@@ -1,0 +1,39 @@
+<h2 id="{{folder.id}}">{{folder.name}}</h2> 
+
+{{#each alreadyAdded}}
+<div>
+    <a href="/notes/{{this.id}}" style="width: 12rem;" class="btn d-flex flex-column justify-content-start align-items-center">
+        <span class="font{{this.color}} folderIcons">
+            <i class="bi bi-file-text-fill"></i>
+        </span>
+        <h5 class="{{this.font}}" maxlength="10">{{this.title}}</h5>
+    </a>
+    <a href="/folders/delete/{{this.folderid}}/{{this.id}}" class="btn btn-outline-danger">Remove</a>
+</div>
+{{/each}}
+<a type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#folderAddModal">
+    Add notes
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="folderAddModal" tabindex="-1" aria-labelledby="folderAddModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Link a Note to this List Item</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <ul class="list-group list-group-flush">
+                {{#each newNotes}}
+                    <button id="{{this.id}}" class="list-group-item {{this.font}} {{this.color}}" data-bs-dismiss="modal">{{this.title}}</button>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+  </div>
+</div>
+
+<script src="/javascript/folder.js"></script>
