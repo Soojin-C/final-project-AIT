@@ -4,14 +4,22 @@
 
 {{#each lists}}
 <div id = "lists">
-    <div class="card" style="width: 18rem;">
+    <div class="card {{this.color}}" style="width: 18rem;">
     <div class="card-body">
-        <h5 class="card-title">{{this.title}}</h5>
-        <ul>
-            {{#each this.items}}
-                <li> {{this}} </li>
-            {{/each}}
-        </ul>
+        <div class= "{{this.font}}">
+            <h5 class="card-title">{{this.title}}</h5>
+            <ul>
+                {{#each this.items}}
+                    <li>
+                    {{#if this.linked}}
+                        <a href = "/notes/{{this.link}}"> {{this.text}} </a>
+                    {{else}}
+                         {{this.text}} 
+                    {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
         <a href="/lists/{{this.id}}" class="btn btn-outline-primary">Edit</a>
         <a href="/lists/delete/{{this.id}}" class="btn btn-outline-danger">Delete</a>
     </div>

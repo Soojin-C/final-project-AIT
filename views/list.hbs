@@ -1,17 +1,48 @@
-<form id = "wrapper" method="POST" action="/lists/save">
+<form id = "wrapper" class="{{list.color}} {{list.font}}"method="POST" action="/lists/save/{{list.id}}">
 	<div class="row align-items-center">
 		<div class="col-auto">
 			<label for="inputTitle" class="col-form-label">Title:</label>
 		</div>
 		<div class="col-auto">
-			<input name="title" value={{list.title}} type="text" id="inputTitle" class="form-control form-control-sm" required>
+			<input name="title" value="{{list.title}}" type="text" id="inputTitle" class="form-control form-control-sm" required>
 		</div>
 	</div>
+	<div class="form row">
+		<label class="col-2" for="fonts">Font:</label>
+		<select class="form-control col-4" id="fonts" name="fontlist" form="wrapper">
+			<option value="f-helvetica" {{#if font.[0]}} selected {{/if}}>Helvetica</option>
+			<option value="f-arial" {{#if font.[1]}} selected {{/if}}>Arial</option>
+			<option value="f-squarepeg" {{#if font.[2]}} selected {{/if}}>Square Peg</option>
+		</select>
+		<label class="col-2" for="colors">Color:</label>
+		<select class="form-control  col-4" id="colors" name="colorlist" form="wrapper">
+			<option value="c-grey" {{#if color.[0]}} selected {{/if}}>Grey</option>
+			<option value="c-red"{{#if color.[1]}} selected {{/if}}>Red</option>
+			<option value="c-orange"{{#if color.[2]}} selected {{/if}}>Orange</option>
+			<option value="c-yellow"{{#if color.[3]}} selected {{/if}}>Yellow</option>
+			<option value="c-green"{{#if color.[4]}} selected {{/if}}>Green</option>
+			<option value="c-mint"{{#if color.[5]}} selected {{/if}}>Mint</option>
+			<option value="c-blue"{{#if color.[6]}} selected {{/if}}>Blue</option>
+			<option value="c-purple"{{#if color.[7]}} selected {{/if}}>Purple</option>
+			<option value="c-pink"{{#if color.[8]}} selected {{/if}}>Pink</option>
+		</select>
+	</div>
+
     <div id="items" class="row align-items-center">
         {{#each list.items}}
-            <div class="d-flex flex-row">
-                <input type="text" id = "item" name="items" value={{this}}>
+            <div class="d-flex flex-row" id="{{this.id}}">
+				<input class="form-control-plaintext" name="linkIDSaved" type="text" value="{{this.id}}" hidden></input>
+                <input type="text" id = "item" name="items" value="{{this.text}}">
                 <button class="btn btn-danger del">Delete</button>
+				<input class="form-control-plaintext linkid" name="linker" type="text" value="{{this.link}}" hidden></input>
+				{{#if this.linked}}
+				<a class="btn link" data-bs-toggle="offcanvas" href="#canvasNote" role="button" aria-controls="canvasNote">
+					<i class="bi bi-link"></i>
+					{{this.note.title}}
+				</a>
+				{{else}}
+				<a class="btn btn-primary linker-btn", id="linker" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Link</a>
+				{{/if}}
             </div>
         {{/each}}
 	</div>
@@ -26,5 +57,39 @@
 	<button type="submit" class="btn btn-primary">Save</button>
 </form>
 
-<script src="/javascript/main.js"></script>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasNote" aria-labelledby="offcanvasRightLabel">
+	<div class="offcanvas-header">
+		<h5 id="offcanvasRightLabel"> </h5>
+		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
+	</div>
+</div>
+
+<div class="col-auto">
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Link a Note to this List Item</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group list-group-flush">
+					{{#each notes}}
+						<a id="{{this.id}}" class="list-group-item list-group-item-action {{this.font}} {{this.color}}" data-bs-dismiss="modal">{{this.title}}</a>
+					{{/each}}
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+<script src="/javascript/list.js"></script>
 <script src="/javascript/listEdit.js"></script>
+<script src="/javascript/color.js"></script>

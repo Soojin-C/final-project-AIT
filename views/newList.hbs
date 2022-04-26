@@ -1,4 +1,4 @@
-<form id = "wrapper" method="POST" action="/lists/save">
+<form id = "wrapper" class= "c-grey f-helvetica" method="POST" action="/lists/save">
 	<div class="row align-items-center">
 		<div class="col-auto">
 			<label for="inputTitle" class="col-form-label">Title:</label>
@@ -6,6 +6,26 @@
 		<div class="col-auto">
 			<input name="title" type="text" id="inputTitle" class="form-control form-control-sm" required>
 		</div>
+	</div>
+	<div class="form row">
+		<label class="col-2" for="fonts">Font:</label>
+		<select class="form-control col-4" id="fonts" name="fontlist" form="wrapper">
+			<option value="f-helvetica">Helvetica</option>
+			<option value="f-arial">Arial</option>
+			<option value="f-squarepeg">Square Peg</option>
+		</select>
+		<label class="col-2" for="colors">Color:</label>
+		<select class="form-control  col-4" id="colors" name="colorlist" form="wrapper">
+			<option value="c-grey">Grey</option>
+			<option value="c-red">Red</option>
+			<option value="c-orange">Orange</option>
+			<option value="c-yellow">Yellow</option>
+			<option value="c-green">Green</option>
+			<option value="c-mint">Mint</option>
+			<option value="c-blue">Blue</option>
+			<option value="c-purple">Purple</option>
+			<option value="c-pink">Pink</option>
+		</select>
 	</div>
     <div id="items" class="row align-items-center">
 	</div>
@@ -17,7 +37,41 @@
 			<button id="addItem" class="btn btn-primary">+</button>
 		</div>
 	</div>
-	<button type="submit" class="btn btn-primary">Save</button>
+	<button type="submit" class="btn btn-primary" id="savebtn">Save</button>
 </form>
 
-<script src="/javascript/main.js"></script>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="canvasNote" aria-labelledby="offcanvasRightLabel">
+	<div class="offcanvas-header">
+		<h5 id="offcanvasRightLabel"> </h5>
+		<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
+	</div>
+</div>
+
+<div class="col-auto">
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Link a Note to this List Item</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<ul class="list-group list-group-flush">
+					{{#each notes}}
+						<a id="{{this.id}}" class="list-group-item list-group-item-action {{this.font}} {{this.color}}" data-bs-dismiss="modal">{{this.title}}</a>
+					{{/each}}
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+<script src="/javascript/list.js"></script>
+<script src="/javascript/color.js"></script>

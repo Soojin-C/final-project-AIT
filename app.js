@@ -6,7 +6,7 @@ const path = require('path');
 
 const routes = require('./routes/index');
 const list = require('./routes/list');
-//const listItem = require('./routes/list-item');
+const items = require('./routes/items');
 const notes = require('./routes/notes');
 
 const app = express();
@@ -33,6 +33,8 @@ app.use(session(sessionOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.json());
+
 
 // passport setup
 app.use(passport.initialize());
@@ -49,7 +51,7 @@ passport.use(jwtStrategy);
 
 app.use('/', routes);
 app.use('/lists', list);
-//app.use('/list-item', listItem);
+app.use('/api', items);
 app.use('/notes', notes);
 
 app.listen(process.env.PORT || 3000);

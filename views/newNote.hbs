@@ -1,16 +1,33 @@
 {{error}}
-<form id = "wrapper" method="POST" action="/notes/save">
-	<div class="row align-items-center">
-		<div class="col-auto">
-			<label for="inputTitle" class="col-form-label">Title:</label>
-		</div>
-		<div class="col-auto">
-			<input name="title" type="text" id="inputTitle" class="form-control form-control-sm" required>
-		</div>
-
+<form id = "wrapper" class = "c-grey f-helvetica" method="POST" action="/notes/save">
+	<div class="row">
+		<label class="col-2"for="inputTitle">Title:</label>
+		<input name="title" type="text" id="inputTitle" class="col-6 form-control" placeholder="Title" required>
+	</div>
+	<div class="form row">
+		<label class="col-2" for="fonts">Font:</label>
+		<select class="form-control col-4" id="fonts" name="fontlist" form="wrapper">
+			<option value="f-helvetica">Helvetica</option>
+			<option value="f-arial">Arial</option>
+			<option value="f-squarepeg">Square Peg</option>
+		</select>
+		<label class="col-2" for="colors">Color:</label>
+		<select class="form-control  col-4" id="colors" name="colorlist" form="wrapper">
+			<option value="c-grey">Grey</option>
+			<option value="c-red">Red</option>
+			<option value="c-orange">Orange</option>
+			<option value="c-yellow">Yellow</option>
+			<option value="c-green">Green</option>
+			<option value="c-mint">Mint</option>
+			<option value="c-blue">Blue</option>
+			<option value="c-purple">Purple</option>
+			<option value="c-pink">Pink</option>
+		</select>
 	</div>
 	<div class="row align-items-center">
 		<textarea name="noteContent" class="form-control" rows="3"></textarea>
 	</div>
 	<button type="submit" class="btn btn-primary">Save</button>
 </form>
+
+<script src="/javascript/color.js"></script>
