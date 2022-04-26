@@ -44,6 +44,7 @@ router.get('/newList', (req, res) => {
 
 router.post('/save', (req, res) => {
     console.log(req.body);
+    const data = {...req.body};
     const newList = new List({user: req.session.user.user, title: req.body.title, font: req.body.fontlist, color: req.body.colorlist});
     const _id = newList._id;
     newList.save(function(err){
@@ -51,37 +52,49 @@ router.post('/save', (req, res) => {
             res.render('newList.hbs', {error: err, user: req.session.user});
         }
     });
-    const items = req.body.linker.map((e, i)=>{
-        const retVal = {};
-        if (e !== ""){
-            retVal.linked = true;
-            retVal.link = e;
+    if (data.hasOwnProperty("linker")){
+        let linkerData = req.body.linker;
+        let itemData = req.body.items;
+        if (!(linkerData instanceof Array)){
+            linkerData = [linkerData];
+            itemData = [itemData];
         }
-        else{
-            retVal.linked = false;
-        }
-        retVal.list = _id;
-        retVal.text = req.body.items[i];
-        return retVal;
-    });
-    const ret = async() =>{
-        for(const item of items){
-            const newItem = new Item(item);
-            try{
-                await newItem.save();
+        const items = linkerData.map((e, i)=>{
+            const retVal = {};
+            if (e !== ""){
+                retVal.linked = true;
+                retVal.link = e;
             }
-            catch(err){
-                console.log(err);
+            else{
+                retVal.linked = false;
             }
-        }
+            retVal.list = _id;
+            retVal.text = itemData[i];
+            return retVal;
+        });
+        const ret = async() =>{
+            for(const item of items){
+                const newItem = new Item(item);
+                try{
+                    await newItem.save();
+                }
+                catch(err){
+                    console.log(err);
+                }
+            }
+            res.redirect('/lists');
+        };
+        ret();
+    }
+    else{
         res.redirect('/lists');
-    };
-    ret();
+    }
 });
 
 router.post('/save/:listID', async (req, res) => {
     const {listID} = req.params;
     console.log(req.body);
+    const data = {...req.body};
     const changes = {title: req.body.title, font: req.body.fontlist, color: req.body.colorlist};
     try {
         await List.findByIdAndUpdate(listID, changes);
@@ -89,17 +102,31 @@ router.post('/save/:listID', async (req, res) => {
     catch(error){
         console.log(error);
     }
+    let linkIDSaved = [];
+    let itemsNames = [];
+    let linker = [];
+    if (data.hasOwnProperty("linkIDSaved")){
+        linkIDSaved = req.body.linkIDSaved;
+        itemsNames = req.body.items;
+        linker = req.body.linker;
+        // if it only contains one item
+        if (!(linkIDSaved instanceof Array)){
+            linkIDSaved = [linkIDSaved];
+            itemsNames = [itemsNames];
+            linker = [linker];
+        }  
+    }
     try{
         const items = await Item.find({list: listID});
         const ret = async() =>{
             for(const item of items){
                 const id = item.id;
-                const itemids= req.body.linkIDSaved.includes(id);
-                console.log(itemids);
+                const itemids= linkIDSaved.includes(id);
+                //console.log(itemids);
                 //update the already saved 
                 if (itemids){
-                    const i = req.body.linkIDSaved.indexOf(id);
-                    const linked = req.body.linker[i];
+                    const i = linkIDSaved.indexOf(id);
+                    const linked = linker[i];
                     if (linked !== ""){
                         item.linked = true;
                         item.link = linked;
@@ -117,40 +144,41 @@ router.post('/save/:listID', async (req, res) => {
             }
         };
         await ret();
-        const newItemI = req.body.linkIDSaved.indexOf("");
-        const itemsNames = req.body.items.slice(newItemI);
-        const linker = req.body.linker.slice(newItemI);
-        const newItems = linker.map((e, i)=>{
-            const retVal = {};
-            if (e !== ""){
-                retVal.linked = true;
-                retVal.link = e;
-            }
-            else{
-                retVal.linked = false;
-            }
-            retVal.list = listID;
-            retVal.text = itemsNames[i];
-            return retVal;
-        });
-        const addNew = async () =>{
-            for(const item of newItems){
-                const newItem = new Item(item);
-                try{
-                    await newItem.save();
+        const newItemI = linkIDSaved.indexOf("");
+        if (newItemI >= 0){
+            itemsNames = itemsNames.slice(newItemI);
+            linker = linker.slice(newItemI);
+            const newItems = linker.map((e, i)=>{
+                const retVal = {};
+                if (e !== ""){
+                    retVal.linked = true;
+                    retVal.link = e;
                 }
-                catch(err){
-                    console.log(err);
+                else{
+                    retVal.linked = false;
                 }
-            }
-        };
-        await addNew();
+                retVal.list = listID;
+                retVal.text = itemsNames[i];
+                return retVal;
+            });
+            const addNew = async () =>{
+                for(const item of newItems){
+                    const newItem = new Item(item);
+                    try{
+                        await newItem.save();
+                    }
+                    catch(err){
+                        console.log(err);
+                    }
+                }
+            };
+            await addNew();
+        }
         res.redirect("/lists");
     }
     catch(err){
         console.log(err);
-    }
-    
+    }  
 });
 
 router.get('/:listID', (req, res) => {
