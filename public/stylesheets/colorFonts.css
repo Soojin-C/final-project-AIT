@@ -1,0 +1,116 @@
+/*
+	selectors for the customizing choices
+	colors: 
+		grey, red, orange, yellow, green, mint, blue, purple, pink
+	fonts:  
+		helvetica, arial, square-peg
+	folder-colors:
+		black, red, yellow, green, blue, purple
+*/
+
+/* COLOR 
+
+.{
+	background-color: ;
+}
+
+*/
+.c-grey{
+	background-color: #EEEEEE;
+}
+.c-red{
+	background-color: #FEDAD2;
+}
+.c-orange{
+	background-color: #FEE9D2;
+}
+.c-yellow{
+	background-color: #FFFFD4;
+}
+.c-green{
+	background-color: #F2FFE6;
+}
+.c-mint{
+	background-color: #D2FEE9;
+}
+.c-blue{
+	background-color: #D4F0FC;
+}
+.c-purple{
+	background-color: #E6DEFE;
+}
+.c-pink{
+	background-color: #FCEBFC;
+}
+
+.fontc-grey{
+	color: #EEEEEE;
+}
+.fontc-red{
+	color: #FEDAD2;
+}
+.fontc-orange{
+	color: #FEE9D2;
+}
+.fontc-yellow{
+	color: #FFFFD4;
+}
+.fontc-green{
+	color: #F2FFE6;
+}
+.fontc-mint{
+	color: #D2FEE9;
+}
+.fontc-blue{
+	color: #D4F0FC;
+}
+.fontc-purple{
+	color: #E6DEFE;
+}
+.fontc-pink{
+	color: #FCEBFC;
+}
+
+.fc-black{
+	color: #000000;
+}
+.fc-red{
+	color: #ff6246;
+}
+.fc-yellow{
+	color: #ffdd00;
+}
+.fc-green{
+	color: #84d339;
+}
+.fc-blue{
+	color: #60b9e0;
+}
+.fc-purple{
+	color: #9f81fb;
+}
+
+/* FONTS 
+
+.{
+	font-family: ;
+}
+
+*/
+.f-helvetica{
+	font-family: Helvetica;
+}
+.f-arial{
+	font-family: Arial;
+}
+.f-squarepeg{
+	font-family: 'Square Peg', cursive;
+	font-size: 22px;
+}
+
+#folderIcon{
+	font-size: 70px;
+}
+.folderIcons{
+	font-size: 80px;
+}

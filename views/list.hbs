@@ -30,7 +30,7 @@
 
     <div id="items" class="container">
         {{#each list.items}}
-            <div class="row" id="{{this.id}}">
+            <div class="row" id="{{this.id}}"> 
 				<input class="form-control-plaintext" name="linkIDSaved" type="text" value="{{this.id}}" hidden></input>
                 <input class="col form-control form-control-sm" type="text" id = "item" name="items" value="{{this.text}}">
                 <button class="col-2 btn btn-danger del">Delete</button>

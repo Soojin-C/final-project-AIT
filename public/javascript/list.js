@@ -129,7 +129,10 @@ function main(){
                         text = text.slice(0,12) + ' ...';
                     }
                     const t = document.createTextNode(text);
-                    label.appendChild(t);
+                    const span = document.createElement("span");
+                    span.setAttribute("class", "titleRestrict");
+                    span.append(t);
+                    label.appendChild(span);
 
                     label.addEventListener("click", openCanvas);
                     mainWrap.appendChild(label);

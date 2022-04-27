@@ -1,20 +1,31 @@
-<h2>All Notes</h2> 
-
-<a type="button" class="btn btn-outline-secondary" href="/notes/newNote"> Add a new note </a>
-
-{{#each notes}}
-<div id = "notes">
-    <div class="card {{this.color}}" style="width: 18rem;">
-    <div class="card-body">
-        <div class = "{{this.font}}">
-            <h5 class="card-title b-titleRestrict">{{this.title}}</h5>
-            <p class="card-text t-titleRestrict">{{this.text}}</p>
-        </div>
-        <a href="/notes/{{this.id}}" class="btn btn-outline-primary">Edit</a>
-        <a href="/notes/delete/{{this.id}}" class="btn btn-outline-danger">Delete</a>
+<div class="container">
+    <div class="row p-2">
+        <h2 class="text-center">All Notes</h2> 
     </div>
+    <div class="row p-2">
+        <p class="text-center">Here lies all of the notes you have created. You are able to edit or delete them. You can also add a new note.</p> 
+    </div>
+    <div class="row">
+        <a type="button" class="btn btn-outline-secondary" href="/notes/newNote"> Add a new note </a>
+    </div>
+    <div id = "cardGrid" class="row row-cols-1 row-cols-md-auto g-4">
+    {{#each notes}}
+        <div class="col">
+            <div class="card {{this.color}}" style="width: 15rem; height: 19rem;">
+                <div class="card-body">
+                    <div class = "{{this.font}}">
+                        <h5 class="card-title b-titleRestrict">{{this.title}}</h5>
+                        <p class="card-text t-titleRestrict">{{this.text}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/notes/{{this.id}}" class="btn btn-outline-primary">Edit</a>
+                    <a href="/notes/delete/{{this.id}}" class="btn btn-outline-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    {{/each}}
     </div>
 </div>
-{{/each}}
 
 <script src="/javascript/titleRestrict.js"></script>

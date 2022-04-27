@@ -101,12 +101,13 @@ function main(){
 
     async function openCanvas(e){
         const canvas = document.querySelector("#canvasNote");
-        const parent = e.target.parentNode;
+        const parent = e.target.parentNode.parentNode;
+        console.log(e.target.parentNode.parentNode);
         const noteid = parent.querySelector(".linkid").value;
         const url = `${host}/api/${noteid}`;
         let data = {};
         //console.log(url);
-        try {
+        try { 
             const res = await fetch(url);
             data = await res.json();
         }
