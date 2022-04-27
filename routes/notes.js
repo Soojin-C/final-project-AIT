@@ -2,7 +2,8 @@ const express = require('express'),
 	router = express.Router(),
 	mongoose = require('mongoose'),
 	Note = mongoose.model('Note'),
-    Item = mongoose.model('Item');
+    Item = mongoose.model('Item'),
+    NoteFolder = mongoose.model('NoteFolder');
 
 
 const isAuthenticated = (req, res, next) => {
@@ -93,18 +94,25 @@ router.get('/delete/:noteID', (req, res) => {
                     console.log(err);
                 }
                 else{
-                    const ret = async() =>{
-                        for(const item of items){
-                            item.linked = false;
-                            await item.save();
-                            await item.set('key_to_delete', undefined, {strict: false} );
-                            //await Item.find({list: list._id});
-                            //console.log(items);
-                            //list.items = items;
+                    NoteFolder.deleteMany({noteid: noteID}, (err)=>{
+                        if (err){
+                            console.log(err);
                         }
-                        res.redirect("/notes");
-                    };
-                    ret();
+                        else{
+                            const ret = async() =>{
+                                for(const item of items){
+                                    item.linked = false;
+                                    await item.save();
+                                    await item.set('key_to_delete', undefined, {strict: false} );
+                                    //await Item.find({list: list._id});
+                                    //console.log(items);
+                                    //list.items = items;
+                                }
+                                res.redirect("/notes");
+                            };
+                            ret();
+                        }
+                    });
                 }
             });
         }
