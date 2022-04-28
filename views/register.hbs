@@ -1,21 +1,37 @@
-<form id = "wrapper" method="POST" action="/register">
-	{{error}}
-	<div class="row align-items-center">
-		<div class="col-auto">
-			<label for="inputUsername" class="col-form-label">Username</label>
-		</div> 
-		<div class="col-auto">
-			<input name="username" type="text" id="inputUsername" class="form-control" required>
+<div class="container">
+	{{#if error}}
+	<div class="row justify-content-center" style="width: 92vw;">
+		<div class="alert alert-danger" role="alert">
+			{{error}}
 		</div>
 	</div>
-	<div class="row align-items-center">
-		<div class="col-auto">
-			<label for="inputPassword" class="col-form-label">Password</label>
-		</div>
-		<div class="col-auto">
-			<input name="password" type="password" id="inputPassword" class="form-control" required>
-		</div>
+	{{/if}}
+	<div class="row justify-content-center">
+		<form id="login-form" method="POST" action="/register">
+			<div class="form-row pb-4">
+				<h2 class="text-center">Sign Up</h2> 
+				<p class="text-center">Sign up for a new account. Input a username and password.</p>
+			</div>
+			<div class="form-group row p-2">
+				<label for="inputUsername" class="col-3 col-form-label">Username</label>
+				<div class="col-9">
+					<input name="username" type="text" id="inputUsername" class="form-control" placeholder="Enter New Username" required>
+				</div>
+			</div>
+			<div class="form-row row p-2 mb-6">
+				<label for="inputPassword" class="col-3 col-form-label">Password</label>
+				<div class="col-9">
+					<input name="password" type="password" id="inputPassword" class="form-control" placeholder="Enter New Password" required>
+				</div>
+			</div>
+			<div class="form-row row justify-content-center align-items-center" style="height: 5rem;">
+				<button type="submit" class="btn btn-primary" style="width: 15rem;">Register</button>
+			</div>
+			<div class='form-row row justify-content-center' style="width: 30vw;">
+				<span> Don't have an account? 
+					<a href="/login">Login</a>. 
+				</span>
+			</div>
+		</form>
 	</div>
-	<button type="submit" class="btn btn-primary">Register</button>
-	<div class='form-row'>Already have an account? <a href="/login">Login</a>.</div>
-</form>
+</div>

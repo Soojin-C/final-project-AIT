@@ -1,21 +1,35 @@
-<h2>All Folders</h2> 
-
-<a type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#folderAddModal">
-    Add a new Folder
-</a>
-
-<div id = "cardGrid" class="row row-cols-1 row-cols-md-auto g-4">
-  <div class="col">
-    {{#each folders}}
-      <a href="/folders/{{this.id}}" style="width: 12rem;" class="btn d-flex flex-column justify-content-start align-items-center">
+<div class="container">
+    <div class="row p-2">
+        <h2 class="text-center">All Folders</h2> 
+    </div>
+    <div class="row p-2">
+      <p class="text-center">Here lies all of the folders you have created. You can delete them or open them to see what's inside.</p> 
+      <br>
+      <p class="text-center" id="delInfo"></p>
+    </div>
+    <div class="row p-2">
+        <a type="button" id="startDel" class="btn btn-outline-secondary"> Edit </a> 
+        <a type="button" id="doneEdit" class="btn btn-outline-danger" style="display:none;"> Done </a> 
+    </div>
+    <div id = "cardGrid" class="row row-cols-1 row-cols-md-auto g-4">
+      <div class="col">
+        <a type="button" class="d-flex flex-column justify-content-center align-items-center btn btn-outline-secondary" style="width: 12rem; height:14rem;" data-bs-toggle="modal" data-bs-target="#folderAddModal">
+          <div class="folderIcons"><i class="bi bi-folder-plus"></i></div>
+          <span> Add a new Folder </span>
+        </a>
+      </div>
+      {{#each folders}}
+      <div class="col" style="height: 14rem;">
+        <a href="/folders/deleteFolder/{{this.id}}" class="btn btn-outline-danger deleteThisItem" style="visibility: hidden;"><i class="bi bi-x-lg"></i></a>
+        <a href="/folders/{{this.id}}" style="width: 12rem;" class="btn d-flex flex-column justify-content-start align-items-center">
           <span class="{{this.color}} folderIcons">
-              <i class="bi bi-folder2"></i>
+            <i class="bi bi-folder2"></i>
           </span>
           <h5 class="titleRestrict">{{this.name}}</h5>
-      </a>
-      <a href="/folders/deleteFolder/{{this.id}}" class="btn btn-outline-danger">Delete</a>
-    {{/each}}
-  </div>
+        </a>
+      </div>
+      {{/each}}
+    </div>
 </div>
 
 <!-- Modal -->
@@ -51,3 +65,4 @@
 
 <script src="/javascript/folders.js"></script>
 <script src="/javascript/titleRestrict.js"></script>
+<script src="/javascript/revealDelete.js"></script>

@@ -88,7 +88,7 @@ router.get('/delete/:noteID', (req, res) => {
         if(err){
             console.log(err);
         }
-        else{
+        else{ 
             Item.find({link: noteID}, (err, items)=>{
                 if(err){
                     console.log(err);
@@ -102,8 +102,8 @@ router.get('/delete/:noteID', (req, res) => {
                             const ret = async() =>{
                                 for(const item of items){
                                     item.linked = false;
+                                    await item.set('link', undefined, {strict: false} );
                                     await item.save();
-                                    await item.set('key_to_delete', undefined, {strict: false} );
                                     //await Item.find({list: list._id});
                                     //console.log(items);
                                     //list.items = items;

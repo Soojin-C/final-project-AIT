@@ -10,10 +10,16 @@
 
 #login-form {
 	margin-top:1em;
-	width: 30vw;
+	width: 30rem;
 	margin-bottom:1em;
 	padding: 1em 3em;
-	background-color: azure;
+	background-color: rgb(223, 223, 223);
+}
+
+#wrapper {
+	width:500px;
+	padding:2em;
+	text-align: center;
 }
 
 /*
@@ -23,9 +29,5 @@ a {
 
 
 
-#wrapper {
-	width:500px;
-	padding:2em;
-	text-align: center;
-}
+
 */

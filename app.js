@@ -43,9 +43,9 @@ app.use((req, res, next) => {
 
 // =================== LOGIN setup =====================
 
-const passport = require('passport');
-app.use(passport.initialize());
-app.use(passport.session());
+//const passport = require('passport');
+//app.use(passport.initialize());
+//app.use(passport.session());
 /*
 // make user data available to all templates
 app.use((req, res, next) => {
@@ -53,8 +53,8 @@ app.use((req, res, next) => {
   next();
 }); 
 */
-const jwtStrategy = require("./jwt-config").jwtStrategy;
-passport.use(jwtStrategy);
+//const jwtStrategy = require("./jwt-config").jwtStrategy;
+//passport.use(jwtStrategy);
 
 // ================= END LOGIN setup ==================
 

@@ -1,7 +1,7 @@
 const express = require('express'), 
     router = express.Router(),
     mongoose = require('mongoose'),
-    passport = require('passport'),
+    //passport = require('passport'),
     User = mongoose.model('User');
 
   const bcrypt = require("bcrypt");
@@ -25,16 +25,12 @@ router.get('/', (req, res) => {
   res.render('home', {user: req.session.user});
 });
 
-router.get('/home', passport.authenticate("jwt", { session: false }), (req, res) => {
-  res.render('homeLogin', {user: req.session.user});
-});
-
 router.get('/login', (req, res) => {
-  res.render('login', {"heading": "Login"});
+  res.render('login');
 });
 
 router.get('/register', (req, res) => {
-  res.render('register', {"heading": "Sign Up"});
+  res.render('register');
 });
 
 router.post('/register', (req, res) => {
@@ -60,8 +56,8 @@ router.post('/register', (req, res) => {
         //console.log(token);
         req.session.user = {user: newUser, username: username, ID: newUser.id, token: token};
         res.setHeader('Authorization', `JWT ${req.session.user.token}`);
-        res.status(200);//.redirect("/");
-        res.render("homeLogin", {user: req.session.user});
+        res.redirect("/");
+        //res.render("homeLogin", {user: req.session.user});
       }
     });
   });
@@ -89,9 +85,9 @@ router.post('/login', (req, res) => {
           const token = jwt.sign(payload, jwtOptions.secretOrKey); // create a signed token
           req.session.user = {user: users, username: username, ID: users.id, token: token};
           res.setHeader('Authorization', `JWT ${req.session.user.token}`);
-          res.status(200);
-          //res.redirect("/");
-          res.render("homeLogin", {user: req.session.user});
+          //res.status(200);
+          res.redirect("/");
+          //res.render("homeLogin", {user: req.session.user});
         } 
         else{
           res.status(401).render("login", {error: "Password is incorrect"});
