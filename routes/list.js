@@ -6,13 +6,13 @@ const express = require('express'),
     Note = mongoose.model('Note');
 
 const isAuthenticated = (req, res, next) => {
-  if(!req.session.user) {
-    res.redirect('/'); 
-    console.log('redirecting');
-  } else {
-    next();
-  }
-};
+    if(!req.session.user) {
+        res.redirect('/login'); 
+        console.log('redirecting');
+    } else {
+        next();
+    }
+    };
 
 router.use(isAuthenticated);
 

@@ -7,13 +7,13 @@ const express = require('express'),
 
 
 const isAuthenticated = (req, res, next) => {
-  if(!req.session.user) {
-    res.redirect('/login'); 
-    console.log('redirecting');
-  } else {
-    next();
-  }
-};
+    if(!req.session.user) {
+        res.redirect('/login'); 
+        console.log('redirecting');
+    } else {
+        next();
+    }
+    };
 
 router.use(isAuthenticated);
 

@@ -1,19 +1,39 @@
-<h2 id="{{folder.id}}">{{folder.name}}</h2> 
-
-{{#each alreadyAdded}}
-<div>
-    <a href="/notes/{{this.id}}" style="width: 12rem;" class="btn d-flex flex-column justify-content-start align-items-center">
-        <span class="font{{this.color}} folderIcons">
+<div class="container">
+    <div class="row p-2">
+        <h2 id="{{folder.id}}" class="text-center">{{folder.name}}</h2> 
+    </div>
+    <div class="row p-2">
+      <p class="text-center"> Add/Delete notes from this folder</p> 
+      <br>
+      <p class="text-center" id="delInfo"></p>
+    </div>
+    <div class="row p-2">
+        <a type="button" id="startDel" class="btn btn-outline-secondary"> Edit </a> 
+        <a type="button" id="doneEdit" class="btn btn-outline-danger" style="display:none;"> Done </a> 
+    </div>
+    <div id = "cardGrid" class="row row-cols-1 row-cols-md-auto g-4">
+      <div class="col">
+        <a type="button" class="d-flex flex-column justify-content-center align-items-center btn btn-outline-secondary" style="width: 12rem; height:14rem;" data-bs-toggle="modal" data-bs-target="#folderAddModal">
+            <div class="folderIcons">
+                <i class="bi bi-file-earmark-plus"></i>
+            </div>
+          <span> Add notes </span>
+        </a>
+      </div>
+      {{#each alreadyAdded}}
+      <div class="col" style="height: 14rem;">
+        <a href="/folders/delete/{{this.folderid}}/{{this.id}}" class="btn btn-outline-danger deleteThisItem" style="visibility: hidden;"><i class="bi bi-x-lg"></i></a>
+        <a href="/notes/{{this.id}}" style="width: 12rem;" class="btn d-flex flex-column justify-content-start align-items-center">
+          <span class="font{{this.color}} folderIcons">
             <i class="bi bi-file-text-fill"></i>
-        </span>
-        <h5 class="titleRestrict {{this.font}}">{{this.title}}</h5>
-    </a>
-    <a href="/folders/delete/{{this.folderid}}/{{this.id}}" class="btn btn-outline-danger">Remove</a>
+          </span>
+          <h5 class="titleRestrict {{this.font}}">{{this.title}}</h5>
+        </a>
+      </div>
+      {{/each}}
+    </div>
 </div>
-{{/each}}
-<a type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#folderAddModal">
-    Add notes
-</a>
+
 
 <!-- Modal -->
 <div class="modal fade" id="folderAddModal" tabindex="-1" aria-labelledby="folderAddModalLabel" aria-hidden="true">
@@ -38,3 +58,4 @@
 
 <script src="/javascript/folder.js"></script>
 <script src="/javascript/titleRestrict.js"></script>
+<script src="/javascript/revealDelete.js"></script>
