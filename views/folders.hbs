@@ -4,17 +4,19 @@
     Add a new Folder
 </a>
 
-{{#each folders}}
-<div id = "lists">
-    <a href="/folders/{{this.id}}" style="width: 12rem;" class="btn d-flex flex-column justify-content-start align-items-center">
-        <span class="{{this.color}} folderIcons">
-            <i class="bi bi-folder2"></i>
-        </span>
-        <h5 class="titleRestrict">{{this.name}}</h5>
-    </a>
-    <a href="/folders/deleteFolder/{{this.id}}" class="btn btn-outline-danger">Delete</a>
+<div id = "cardGrid" class="row row-cols-1 row-cols-md-auto g-4">
+  <div class="col">
+    {{#each folders}}
+      <a href="/folders/{{this.id}}" style="width: 12rem;" class="btn d-flex flex-column justify-content-start align-items-center">
+          <span class="{{this.color}} folderIcons">
+              <i class="bi bi-folder2"></i>
+          </span>
+          <h5 class="titleRestrict">{{this.name}}</h5>
+      </a>
+      <a href="/folders/deleteFolder/{{this.id}}" class="btn btn-outline-danger">Delete</a>
+    {{/each}}
+  </div>
 </div>
-{{/each}}
 
 <!-- Modal -->
 <div class="modal fade" id="folderAddModal" tabindex="-1" aria-labelledby="folderAddModalLabel" aria-hidden="true">

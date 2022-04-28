@@ -6,10 +6,13 @@
         <p class="text-center">Here lies all of the lists you have created. You are able to edit or delete them. 
             <br>In each list are items, either linked to a note. Follow the link to edit/view that linked note. You can also add a new list.</p> 
     </div>
-    <div class="row">
-        <a type="button" class="btn btn-outline-secondary" href="/lists/newList"> Add a new List </a>
+    <div class="row p-2">
+        <a type="button" class="btn btn-outline-secondary" href="/lists/newList"> Add a new List </a> 
     </div>
     <div id = "cardGrid" class="row row-cols-1 row-cols-md-auto g-4">
+        <!--<div class="col">
+            <a type="button" class="btn btn-outline-secondary" style="width: 15rem; height: 19rem;" href="/lists/newList"> Add a new List </a>
+        </div>-->
     {{#each lists}}
         <div class="col">
             <div class="card {{this.color}}" style="width: 15rem; height: 19rem;">

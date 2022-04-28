@@ -1,11 +1,1 @@
-{{#if user}}
-<p>
-Hi {{user.username}}.
-<br/>
-<a type="button" class="btn btn-outline-secondary" href="/notes/newNote"> Create a New Note</a>
-<a type="button" class="btn btn-outline-secondary" href="/lists/newList"> Create a New List</a>
-</p>
-{{else}}
-{{user}}
 <a href="/login">Login</a> or <a href="/register">Register</a>
-{{/if}}

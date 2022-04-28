@@ -1,7 +1,7 @@
 const express = require('express'), 
     router = express.Router(),
     mongoose = require('mongoose'),
-    //passport = require('passport'),
+    passport = require('passport'),
     User = mongoose.model('User');
 
   const bcrypt = require("bcrypt");
@@ -17,12 +17,16 @@ const jwtOptions = require("../jwt-config.js").jwtOptions; // import setup optio
 
 router.get('/logout', (req, res) => {
   req.session.user = null;
-  req.logout();
+  //req.logout();
   res.redirect('/');
 });
 
 router.get('/', (req, res) => {
-  res.render('home', {"heading": "Welcome to Note Keeper", user: req.session.user});
+  res.render('home', {user: req.session.user});
+});
+
+router.get('/home', passport.authenticate("jwt", { session: false }), (req, res) => {
+  res.render('homeLogin', {user: req.session.user});
 });
 
 router.get('/login', (req, res) => {
@@ -42,11 +46,11 @@ router.post('/register', (req, res) => {
       if (err) {
         console.log(err);
         if (err.name === "MongoServerError" && err.code === 11000) {
-          res.status(401).render("register", {heading: "Sign Up", error: "Username already exists"});
+          res.status(401).render("register", {error: "Username already exists"});
         }
         // Some other error
         else{
-          res.status(401).render("register", {heading: "Sign Up",error: err});
+          res.status(401).render("register", {error: err});
         }
       }
       else{
@@ -56,8 +60,8 @@ router.post('/register', (req, res) => {
         //console.log(token);
         req.session.user = {user: newUser, username: username, ID: newUser.id, token: token};
         res.setHeader('Authorization', `JWT ${req.session.user.token}`);
-        res.status(200).redirect("/");
-        //res.render("home", {"heading": "Welcome to Note Keeper", user: req.session.user});
+        res.status(200);//.redirect("/");
+        res.render("homeLogin", {user: req.session.user});
       }
     });
   });
@@ -70,23 +74,28 @@ router.post('/login', (req, res) => {
   User.findOne({ user: username }, "token", function (err, users) {
     if (users === null || err){
       console.log(err);
-      res.status(401).render("login", {header: "Login", error: "Wrong info"});
+      res.status(401).render("login", {error: "User does not exist"});
     }
     else {
       const retPass = users.token;
       // assuming we found the user, check the password is correct
       bcrypt.compare(password, retPass, function (err, result) {
         if (err){
-          res.status(401).render("login", {header: "Login", error: "Password is incorrect"});
+          res.status(401).render("login", {error: err});
         }
-        if (result) {
+        if(result){
+          console.log(result);
           const payload = { id: users.id }; // some data we'll encode into the token
           const token = jwt.sign(payload, jwtOptions.secretOrKey); // create a signed token
           req.session.user = {user: users, username: username, ID: users.id, token: token};
           res.setHeader('Authorization', `JWT ${req.session.user.token}`);
-          res.status(200).redirect("/");
-          //res.render("home", {"heading": "Welcome to Note Keeper", user: req.session.user});
+          res.status(200);
+          //res.redirect("/");
+          res.render("homeLogin", {user: req.session.user});
         } 
+        else{
+          res.status(401).render("login", {error: "Password is incorrect"});
+        }
       });
     }
   });
