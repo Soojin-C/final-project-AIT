@@ -6,8 +6,10 @@ function main(){
 
     async function onAdd(evt){
         evt.preventDefault();
+        const font = document.querySelector("#inputTitle").className.match(/\bf-.+?\b/);
         const input = document.querySelector("#inputItem");
         if (input.value !== ""){
+            const liWrap = document.createElement("li");
             const mainWrap = document.createElement("div");
             mainWrap.setAttribute("class", "row");
 
@@ -21,7 +23,7 @@ function main(){
 
             const newItem = document.createElement("input");
             newItem.setAttribute("type", 'text');
-            newItem.setAttribute("class", "col form-control form-control-sm");
+            newItem.setAttribute("class", `col form-control form-control-sm form-control-plaintext mx-3 fontChange ${font}`);
             newItem.setAttribute("id", `item`);
             newItem.setAttribute("name", "items");
             newItem.value = input.value;
@@ -29,19 +31,20 @@ function main(){
             mainWrap.appendChild(newItem);
 
             const delbtn = document.createElement("button");
-            delbtn.setAttribute("class", `col-2 del del${count} btn btn-danger`);
+            delbtn.setAttribute("class", `col-2 del del${count} btn btn-sm ml-2 btn-danger`);
             delbtn.setAttribute("id", `del${count}`);
 
             let text = document.createTextNode("Delete");
             delbtn.appendChild(text);
             mainWrap.appendChild(delbtn);
             
-            list.appendChild(mainWrap);
+            liWrap.appendChild(mainWrap);
+            list.appendChild(liWrap);
 
             input.value = "";
 
             const linkbtn = document.createElement("a");
-            linkbtn.setAttribute("class", "col-4 btn btn-primary linker-btn");
+            linkbtn.setAttribute("class", "col-4 btn btn-success btn-sm ml-2 linker-btn");
             linkbtn.setAttribute("id", `linker${count}`);
             linkbtn.setAttribute("data-bs-toggle", "modal");
             linkbtn.setAttribute("data-bs-target", "#exampleModal");
@@ -65,7 +68,7 @@ function main(){
             const d = document.getElementById(`del${count-1}`);
             d.addEventListener("click", (e)=>{
                 e.preventDefault();
-                e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+                e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
             });
 
             const l = document.getElementById(`linker${count-1}`);
@@ -115,7 +118,7 @@ function main(){
                     mainWrap.removeChild(l);
 
                     const label = document.createElement("a");
-                    label.setAttribute("class", "col-4 btn link");
+                    label.setAttribute("class", "col-4 btn btn-sm link");
                     label.setAttribute("data-bs-toggle", "offcanvas");
                     label.setAttribute("href", "#canvasNote");
                     label.setAttribute("role", "button");

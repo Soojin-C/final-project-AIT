@@ -2,6 +2,7 @@ const express = require('express'),
     router = express.Router(),
     mongoose = require('mongoose'),
     //passport = require('passport'),
+    Note = mongoose.model('Note'),
     User = mongoose.model('User');
 
   const bcrypt = require("bcrypt");
@@ -23,6 +24,23 @@ router.get('/logout', (req, res) => {
 
 router.get('/', (req, res) => {
   res.render('home', {user: req.session.user});
+});
+
+router.get('/notes/newNote', (req, res) => {
+  //console.log(req.session.token);
+  res.render('newNote.hbs', {user: req.session.user});
+});
+
+router.get('/lists/newList', (req, res) => {
+  if(req.session.user){
+    Note.find({user: req.session.user.user}, (err, notes) => {
+      console.log(notes);
+      res.render('newList.hbs', {user: req.session.user, notes: notes});
+  });
+  }
+  else{
+    res.render('newList.hbs', {user: req.session.user, notes: null});
+  }
 });
 
 router.get('/login', (req, res) => {

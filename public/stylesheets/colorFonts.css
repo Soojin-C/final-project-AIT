@@ -28,7 +28,7 @@
 	background-color: #FFFFD4;
 }
 .c-green{
-	background-color: #F2FFE6;
+	background-color: #d5fac8;
 }
 .c-mint{
 	background-color: #D2FEE9;
@@ -44,31 +44,31 @@
 }
 
 .fontc-grey{
-	color: #EEEEEE;
+	color: #c2c2c2;
 }
 .fontc-red{
-	color: #FEDAD2;
+	color: #ffb6a5;
 }
 .fontc-orange{
-	color: #FEE9D2;
+	color: #ffd1a0;
 }
 .fontc-yellow{
-	color: #FFFFD4;
+	color: #ffff98;
 }
 .fontc-green{
-	color: #F2FFE6;
+	color: #d0ffa4;
 }
 .fontc-mint{
-	color: #D2FEE9;
+	color: #a8fad2;
 }
 .fontc-blue{
-	color: #D4F0FC;
+	color: #9ce1ff;
 }
 .fontc-purple{
-	color: #E6DEFE;
+	color: #c4b0ff;
 }
 .fontc-pink{
-	color: #FCEBFC;
+	color: #ffbae6;
 }
 
 .fc-black{
@@ -101,11 +101,12 @@
 	font-family: Helvetica;
 }
 .f-arial{
-	font-family: Arial;
+	font-family: 'Cairo', sans-serif;
 }
 .f-squarepeg{
-	font-family: 'Square Peg', cursive;
-	font-size: 22px;
+	font-family: 'Playfair Display', serif;
+	/*font-family: 'Square Peg', cursive;
+	font-size: 22px;*/
 }
 
 #folderIcon{

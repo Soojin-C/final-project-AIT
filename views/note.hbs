@@ -1,39 +1,59 @@
-{{error}}
-<form id = "wrapper" class="{{note.font}} {{note.color}}" method="POST" action="/notes/save/{{note.id}}">
-	<div class="row align-items-center">
-		<div class="col-auto">
-			<label for="inputTitle" class="col-form-label">Title:</label>
-		</div>
-		<div class="col-auto">
-            <input name="title" value="{{note.title}}" type="text" id="inputTitle" class="form-control form-control-sm" maxlength="45" required>
+<div class="container">
+	{{#if error}}
+	<div class="row justify-content-center" style="width: 92vw;">
+		<div class="alert alert-danger" role="alert">
+			{{error}}
 		</div>
 	</div>
-
-	<div class="form row">
-		<label class="col-2" for="fonts">Font:</label>
-		<select class="form-control col-4" id="fonts" name="fontlist" form="wrapper">
-			<option value="f-helvetica" {{#if font.[0]}} selected {{/if}}>Helvetica</option>
-			<option value="f-arial" {{#if font.[1]}} selected {{/if}}>Arial</option>
-			<option value="f-squarepeg" {{#if font.[2]}} selected {{/if}}>Square Peg</option>
-		</select>
-		<label class="col-2" for="colors">Color:</label>
-		<select class="form-control  col-4" id="colors" name="colorlist" form="wrapper">
-			<option value="c-grey" {{#if color.[0]}} selected {{/if}}>Grey</option>
-			<option value="c-red"{{#if color.[1]}} selected {{/if}}>Red</option>
-			<option value="c-orange"{{#if color.[2]}} selected {{/if}}>Orange</option>
-			<option value="c-yellow"{{#if color.[3]}} selected {{/if}}>Yellow</option>
-			<option value="c-green"{{#if color.[4]}} selected {{/if}}>Green</option>
-			<option value="c-mint"{{#if color.[5]}} selected {{/if}}>Mint</option>
-			<option value="c-blue"{{#if color.[6]}} selected {{/if}}>Blue</option>
-			<option value="c-purple"{{#if color.[7]}} selected {{/if}}>Purple</option>
-			<option value="c-pink"{{#if color.[8]}} selected {{/if}}>Pink</option>
-		</select>
+	{{/if}}
+	<div class="row p-2">
+		<div class="d-flex flex-column">
+			<a href="/notes/" class="btn btn-secondary" style="width: 11rem;"> <i class="bi bi-caret-left"></i> Back to All Notes</a>
+			<h2 class="text-center">Edit Note</h2>
+		</div>
+    </div>
+    <div class="row">
+        <p class="text-center">Click on the title or note content to edit them. Custimize the note by selecting a font and color. <br> Don't forget to save or the changes will be lost.</p> 
+    </div>
+	<div class="row justify-content-center align-items-center" style="height: 60vh;">
+		<form id = "wrapper" class = "{{note.color}}" method="POST" action="/notes/save/{{note.id}}">
+			<div class="form-row">
+				<label class="col-2"for="inputTitle" style="display:none;">Title:</label>
+				<input name="title" value="{{note.title}}" type="text" id="inputTitle" class="col-6 form-control form-control-plaintext {{note.font}} fontChange" placeholder="Add a new Title" maxlength="45" required>
+			</div>
+			<div class="row py-2">
+				<div class="form-group col">
+					<label class="col-2" for="fonts">Font:</label>
+					<select class="form-control col-4 {{note.font}} fontChange" id="fonts" name="fontlist" form="wrapper">
+						<option value="f-helvetica" {{#if font.[0]}} selected {{/if}}>Helvetica</option>
+						<option value="f-arial" {{#if font.[1]}} selected {{/if}}>Cairo</option>
+						<option value="f-squarepeg" {{#if font.[2]}} selected {{/if}}>Playfair Display</option>
+					</select>
+				</div>
+				<div class="form-group col">
+					<label class="col-2" for="colors">Color:</label>
+					<select class="form-control  col-4" id="colors" name="colorlist" form="wrapper">
+						<option value="c-grey" {{#if color.[0]}} selected {{/if}}>Grey</option>
+						<option value="c-red"{{#if color.[1]}} selected {{/if}}>Red</option>
+						<option value="c-orange"{{#if color.[2]}} selected {{/if}}>Orange</option>
+						<option value="c-yellow"{{#if color.[3]}} selected {{/if}}>Yellow</option>
+						<option value="c-green"{{#if color.[4]}} selected {{/if}}>Green</option>
+						<option value="c-mint"{{#if color.[5]}} selected {{/if}}>Mint</option>
+						<option value="c-blue"{{#if color.[6]}} selected {{/if}}>Blue</option>
+						<option value="c-purple"{{#if color.[7]}} selected {{/if}}>Purple</option>
+						<option value="c-pink"{{#if color.[8]}} selected {{/if}}>Pink</option>
+					</select>
+				</div> 
+			</div>
+			<div class="form-row align-items-center">
+				<textarea name="noteContent" class="form-control form-control-plaintext {{note.font}} fontChange" rows="7" placeholder="Enter some text or leave it blank...">{{note.text}}</textarea>
+			</div>
+			<div class="form-row py-2">
+				<button type="submit" class="btn btn-primary">Save</button>
+				<a href="/notes/delete/{{note.id}}" class="btn btn-danger" style="width: 10rem;">Delete</a>
+			</div>
+		</form>
 	</div>
-
-	<div class="row align-items-center">
-		<textarea name="noteContent" class="form-control" rows="3">{{note.text}}</textarea>
-	</div>
-	<button type="submit" class="btn btn-primary">Save</button>
-</form>
+</div>
 
 <script src="/javascript/color.js"></script>

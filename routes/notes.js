@@ -25,11 +25,6 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.get('/newNote', (req, res) => {
-    //console.log(req.session.token);
-    res.render('newNote.hbs', {user: req.session.user});
-});
-
 router.post('/save', (req, res) => {
     console.log(req.body);
     const newNote = new Note({user: req.session.user.user, title: req.body.title, font: req.body.fontlist, color: req.body.colorlist, text: req.body.noteContent, link:null, folder: null});

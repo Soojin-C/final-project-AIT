@@ -7,7 +7,7 @@ function main(){
         count--;
         all[count].addEventListener("click", (e)=>{
             e.preventDefault();
-            e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+            e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
         });
     }
     const allLinker = document.getElementsByClassName("linker-btn");
@@ -25,7 +25,6 @@ function main(){
                     const noteid = evt.target.id;
                     const url = `${host}/api/${noteid}`;
                     let data = {};
-                    //console.log(url);
                     try {
                         const res = await fetch(url);
                         data = await res.json();
@@ -143,6 +142,20 @@ function main(){
         count --;
         const curr = links[count];
         curr.addEventListener("click", openCanvas);
+    }
+
+    const fonts = document.getElementsByClassName("mx-3");
+    const font = document.querySelector("#inputTitle").className.match(/\bf-.+?\b/);
+    count = fonts.length;
+    while(count !== 0){
+        count --;
+        const item = fonts[count];
+        if(item.className.match(/\bf-.+?\b/)){
+            item.className = item.className.replace(/\bf-.+?\b/, font);
+        }
+        else{
+            item.classList.add(this.value);
+        }
     }
 
 

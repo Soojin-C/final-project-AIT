@@ -35,13 +35,6 @@ router.get('/',(req, res) => {
     });
 });
 
-router.get('/newList', (req, res) => {
-    Note.find({user: req.session.user.user}, (err, notes) => {
-        console.log(notes);
-		res.render('newList.hbs', {user: req.session.user, notes: notes});
-	});
-});
-
 router.post('/save', (req, res) => {
     console.log(req.body);
     const data = {...req.body};

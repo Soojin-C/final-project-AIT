@@ -66,22 +66,29 @@ router.get('/:folderID', async (req, res) => {
     notesInFolder = notesInFolder.map(e => e.noteid.toString());
     //console.log(allNotes);
     //console.log(notesInFolder);
-    const alreadyAdded = [];
-    const newNotes = [];
+    //console.log(allNotes.length === notesInFolder.length);
+    //const alreadyAdded = [...notesInFolder];
+    let newNotes = [];
     allNotes.forEach((e)=>{
         //console.log(e._id);
         //console.log(notesInFolder.includes(e.id));
         if(notesInFolder.includes(e.id)){
+            const i = notesInFolder.indexOf(e.id);
+            console.log(notesInFolder);
             e.folderid = folderID;
-            alreadyAdded.push(e);
+            notesInFolder[i] = e;
+            //alreadyAdded.push(e);
         }
         else{
             newNotes.push(e);
         }
     });
-    //console.log(alreadyAdded);
+    if(newNotes.length === 0){
+        newNotes = null;
+    }
+    //console.log(notesInFolder);
     //console.log(newNotes);
-    res.render('folder.hbs', {folder:folderData, newNotes: newNotes, alreadyAdded: alreadyAdded, user: req.session.user});
+    res.render('folder.hbs', {folder:folderData, newNotes: newNotes, alreadyAdded: notesInFolder, user: req.session.user});
 });
 
 router.get('/deleteFolder/:folderID', (req, res) => {

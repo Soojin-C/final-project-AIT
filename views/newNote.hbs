@@ -1,33 +1,58 @@
-{{error}}
-<form id = "wrapper" class = "c-grey f-helvetica" method="POST" action="/notes/save">
+<div class="container">
+	{{#if error}}
+	<div class="row justify-content-center" style="width: 92vw;">
+		<div class="alert alert-danger" role="alert">
+			{{error}}
+		</div>
+	</div>
+	{{/if}}
+	<div class="row p-2">
+		<div class="d-flex flex-column">
+			<a href="/notes/" class="btn btn-secondary" style="width: 10rem;"> <i class="bi bi-caret-left"></i> All Notes</a>
+			<h2 class="text-center">Create New Note</h2>
+		</div>
+    </div>
 	<div class="row">
-		<label class="col-2"for="inputTitle">Title:</label>
-		<input name="title" type="text" id="inputTitle" class="col-6 form-control" placeholder="Add a new Title" maxlength="45" required>
+        <p class="text-center">Click on the title or note content to edit them. Custimize the note by selecting a font and color. <br> Don't forget to save.</p> 
+    </div>
+	<div class="row justify-content-center align-items-center" style="height: 60vh;">
+		<form id = "wrapper" class = "c-grey" method="POST" action="/notes/save">
+			<div class="form-row">
+				<label class="col-2"for="inputTitle" style="display:none;">Title:</label>
+				<input name="title" type="text" id="inputTitle" class="col-6 form-control f-helvetica fontChange" placeholder="Add a new Title" maxlength="45" required>
+			</div>
+			<div class="row py-2">
+				<div class="form-group col">
+					<label for="fonts">Font:</label>
+					<select class="form-control col-4 fontChange f-helvetica" id="fonts" name="fontlist" form="wrapper">
+						<option value="f-helvetica">Helvetica</option>
+						<option value="f-arial">Cairo</option>
+						<option value="f-squarepeg">Playfair Display</option>
+					</select>
+				</div>
+				<div class="form-group col">
+					<label for="colors">Color:</label>
+					<select class="form-control col-4" id="colors" name="colorlist" form="wrapper">
+						<option value="c-grey">Grey</option>
+						<option value="c-red">Red</option>
+						<option value="c-orange">Orange</option>
+						<option value="c-yellow">Yellow</option>
+						<option value="c-green">Green</option>
+						<option value="c-mint">Mint</option>
+						<option value="c-blue">Blue</option>
+						<option value="c-purple">Purple</option>
+						<option value="c-pink">Pink</option>
+					</select>
+				</div> 
+			</div>
+			<div class="form-row align-items-center">
+				<textarea name="noteContent" class="form-control fontChange f-helvetica" rows="7" placeholder="Enter some text or leave it blank..."></textarea>
+			</div>
+			<div class="form-row py-2">
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+		</form>
 	</div>
-	<div class="form row">
-		<label class="col-2" for="fonts">Font:</label>
-		<select class="form-control col-4" id="fonts" name="fontlist" form="wrapper">
-			<option value="f-helvetica">Helvetica</option>
-			<option value="f-arial">Arial</option>
-			<option value="f-squarepeg">Square Peg</option>
-		</select>
-		<label class="col-2" for="colors">Color:</label>
-		<select class="form-control  col-4" id="colors" name="colorlist" form="wrapper">
-			<option value="c-grey">Grey</option>
-			<option value="c-red">Red</option>
-			<option value="c-orange">Orange</option>
-			<option value="c-yellow">Yellow</option>
-			<option value="c-green">Green</option>
-			<option value="c-mint">Mint</option>
-			<option value="c-blue">Blue</option>
-			<option value="c-purple">Purple</option>
-			<option value="c-pink">Pink</option>
-		</select>
-	</div>
-	<div class="row align-items-center">
-		<textarea name="noteContent" class="form-control" rows="3"></textarea>
-	</div>
-	<button type="submit" class="btn btn-primary">Save</button>
-</form>
+</div>
 
 <script src="/javascript/color.js"></script>

@@ -1,9 +1,12 @@
 <div class="container">
+    <div class="row pt-2">
+        <a href="/folders/" class="btn btn-secondary" style="width: 10rem;">Back to All Folders</a>
+    </div>
     <div class="row p-2">
         <h2 id="{{folder.id}}" class="text-center">{{folder.name}}</h2> 
     </div>
     <div class="row p-2">
-      <p class="text-center"> Add/Delete notes from this folder</p> 
+      <p class="text-center"> Add/Delete notes from this folder <br> Click the note to edit it.</p> 
       <br>
       <p class="text-center" id="delInfo"></p>
     </div>
@@ -11,7 +14,7 @@
         <a type="button" id="startDel" class="btn btn-outline-secondary"> Edit </a> 
         <a type="button" id="doneEdit" class="btn btn-outline-danger" style="display:none;"> Done </a> 
     </div>
-    <div id = "cardGrid" class="row row-cols-1 row-cols-md-auto g-4">
+    <div id = "cardGrid" class="row row-cols-1 row-cols-md-auto g-4 py-4">
       <div class="col">
         <a type="button" class="d-flex flex-column justify-content-center align-items-center btn btn-outline-secondary" style="width: 12rem; height:14rem;" data-bs-toggle="modal" data-bs-target="#folderAddModal">
             <div class="folderIcons">
@@ -37,18 +40,23 @@
 
 <!-- Modal -->
 <div class="modal fade" id="folderAddModal" tabindex="-1" aria-labelledby="folderAddModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Link a Note to this List Item</h5>
+            <h5 class="modal-title">Add a Note to this Folder</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <ul class="list-group list-group-flush">
-                {{#each newNotes}}
-                    <button id="{{this.id}}" class="list-group-item {{this.font}} {{this.color}}" data-bs-dismiss="modal">{{this.title}}</button>
-                {{/each}}
-            </ul>
+            <p class="text-muted">Click the note you want to add to add it</p>
+            {{#if newNotes}}
+                <ul class="list-group list-group-flush">
+                    {{#each newNotes}}
+                        <button id="{{this.id}}" class="list-group-item list-group-item-action {{this.font}} {{this.color}}" data-bs-dismiss="modal">{{this.title}}</button>
+                    {{/each}}
+                </ul>
+            {{else}}
+                <p class="text-muted">No notes to add to this folder</p>
+            {{/if}}
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

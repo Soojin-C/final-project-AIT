@@ -1,3 +1,7 @@
+body, label, button, a, select, input{
+	font-family: 'Ubuntu', sans-serif;
+}
+
 #bd{
 	display: flex;
 	flex-direction: row;
@@ -13,13 +17,18 @@
 	width: 30rem;
 	margin-bottom:1em;
 	padding: 1em 3em;
-	background-color: rgb(223, 223, 223);
+	background-color: rgb(234, 234, 234);
 }
 
 #wrapper {
 	width:500px;
+	height: auto;
 	padding:2em;
 	text-align: center;
+}
+
+.btn-primary{
+	width: 10rem;
 }
 
 /*
