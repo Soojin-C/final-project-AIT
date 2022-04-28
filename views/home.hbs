@@ -1,10 +1,97 @@
-{{#if user}}
-<p>
-    Hi {{user.username}}.
-    <br/>
-    <a type="button" class="btn btn-outline-secondary" href="/notes/newNote"> Create a New Note</a>
-    <a type="button" class="btn btn-outline-secondary" href="/lists/newList"> Create a New List</a>
-</p>
-{{else}}
-<a href="/login">Login</a> or <a href="/register">Register</a>
-{{/if}}
+<div class="container">
+    {{#if user}}
+    <div class="row p-2">
+        <h2 class="text-center">Welcome {{user.username}}</h2>       
+    </div>
+    <div class="row p-2">
+        <p class="text-center">
+            Below, either create a new note or list. Or go view all the notes, lists or folders you have. 
+        </p> 
+    </div>
+    <div id = "cardGrid" class="row row-cols-1 row-cols-md-3 g-4 py-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body d-flex flex-column justify-content-between" style="height: 35vh">
+                    <div>
+                        <h5 class="card-title">Notes</h5>
+                        <p class="card-text">Create notes styled with a color and font</p>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <a type="button" class="btn btn-outline-secondary my-2" href="/notes/newNote"> Create a New Note</a>
+                        <a type="button" class="btn btn-outline-secondary my-2" href="/notes/"> View All Notes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body d-flex flex-column justify-content-between" style="height: 35vh">
+                    <div>
+                        <h5 class="card-title">Folders</h5>
+                        <p class="card-text">Create folders to organzie and store your notes</p>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <a type="button" class="btn btn-outline-secondary my-2" href="/folders/"> View All Folders</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body d-flex flex-column justify-content-between" style="height: 35vh">
+                    <div>
+                        <h5 class="card-title">Lists</h5>
+                        <p class="card-text">Create lists styled with a color and font with items that link to your notes</p>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <a type="button" class="btn btn-outline-secondary my-2" href="/lists/newList"> Create a New List</a>
+                        <a type="button" class="btn btn-outline-secondary my-2" href="/lists/"> View All Lists</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="row p-2">
+        <h2 class="text-center">Welcome to Note Keeper</h2>       
+    </div>
+    <div class="row p-2">
+        <p class="text-center">
+            With Note Keeper, you can create notes and lists. Organize notes into folders and connect them to list items for ease. <br> 
+            Get started by 
+            <a type="button" href="/login"> logging in</a> or 
+            <a type="button" href="/register"> creating a new account</a>
+            <br>
+            Or try out the editors before making an account. 
+        </p> 
+    </div>
+    <div id = "cardGrid" class="row row-cols-1 row-cols-md-2 g-4 py-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body d-flex flex-column justify-content-between" style="height: 35vh">
+                    <div>
+                        <h5 class="card-title">Notes</h5>
+                        <p class="card-text">Create notes styled with a color and font</p>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <a type="button" class="btn btn-outline-secondary my-2" href="/notes/newNote"> Create a New Note</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body d-flex flex-column justify-content-between" style="height: 35vh">
+                    <div>
+                        <h5 class="card-title">Lists</h5>
+                        <p class="card-text">Create lists styled with a color and font with items that link to your notes</p>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <a type="button" class="btn btn-outline-secondary my-2" href="/lists/newList"> Create a New List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</div>

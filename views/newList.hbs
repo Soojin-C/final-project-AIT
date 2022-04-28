@@ -8,12 +8,16 @@
 	{{/if}}
 	<div class="row p-2">
 		<div class="d-flex flex-column">
+			{{#if user}}
 			<a href="/lists/" class="btn btn-secondary" style="width: 10rem;"> <i class="bi bi-caret-left"></i> All Lists</a>
+			{{else}}
+			<a href="/" class="btn btn-secondary" style="width: 10rem;"> <i class="bi bi-caret-left"></i> Home</a>
+			{{/if}}
 			<h2 class="text-center">Create New List</h2>
 		</div>
     </div>
 	<div class="row">
-        <p class="text-center">Click on the title to edit them. Enter a new list item and add it to append it to the list. Custimize the note by selecting a font and color. <br> Don't forget to save.</p> 
+        <p class="text-center">Click on the title to edit them. Enter a new list item and add it to append it to the list. Custimize the note by selecting a font and color. <br> Don't forget to save. If you're not logged in, all progress will be lost. </p> 
     </div>
 	<div class="row justify-content-center align-items-center" style="height: 60vh;">
 		<form id = "wrapper" class = "c-grey" method="POST" action="/lists/save">
@@ -86,11 +90,15 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
+				{{#if notes}}
 				<ul class="list-group list-group-flush">
 					{{#each notes}}
 						<a id="{{this.id}}" class="list-group-item list-group-item-action {{this.font}} {{this.color}}" data-bs-dismiss="modal">{{this.title}}</a>
 					{{/each}}
 				</ul>
+				{{else}}
+                <p class="text-muted">No notes available</p>
+				{{/if}}
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

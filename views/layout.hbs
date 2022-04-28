@@ -31,13 +31,14 @@
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Logged in as: {{user.username}}</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="/logout">Logout</a></li>
+							</ul>
 								{{else}}
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Login</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<li><a class="dropdown-item" href="/login">Login</a></li>
 								<li><a class="dropdown-item" href="/register">Sign Up</a></li>
-								{{/if}}
 							</ul>
+								{{/if}}
 						</div>
 					</form>
 				</div>

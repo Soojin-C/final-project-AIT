@@ -8,12 +8,16 @@
 	{{/if}}
 	<div class="row p-2">
 		<div class="d-flex flex-column">
+			{{#if user}}
 			<a href="/notes/" class="btn btn-secondary" style="width: 10rem;"> <i class="bi bi-caret-left"></i> All Notes</a>
+			{{else}}
+			<a href="/" class="btn btn-secondary" style="width: 10rem;"> <i class="bi bi-caret-left"></i> Home</a>
+			{{/if}}
 			<h2 class="text-center">Create New Note</h2>
 		</div>
     </div>
 	<div class="row">
-        <p class="text-center">Click on the title or note content to edit them. Custimize the note by selecting a font and color. <br> Don't forget to save.</p> 
+        <p class="text-center">Click on the title or note content to edit them. Custimize the note by selecting a font and color. <br> Don't forget to save. If you're not logged in, all progress will be lost.</p> 
     </div>
 	<div class="row justify-content-center align-items-center" style="height: 60vh;">
 		<form id = "wrapper" class = "c-grey" method="POST" action="/notes/save">
