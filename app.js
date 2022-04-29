@@ -3,6 +3,7 @@ require('./db');
  
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 
 const routes = require('./routes/index');
 const list = require('./routes/list');
@@ -24,6 +25,7 @@ const sessionOptions = {
     saveUninitialized: true
 };
 
+app.use(cors());
 app.use('/css', express.static('node_modules/bootstrap/dist/css'));
 app.use('/js', express.static('node_modules/bootstrap/dist/js'));
 
