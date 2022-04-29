@@ -149,6 +149,6 @@ An Example NoteFolder:
 ## [Link to Initial Main Project File](app.js) 
 
 ## Annotations / References Used
-* Fonts from Google Fonts
+* [Fonts from Google Fonts](https://developers.google.com/fonts/docs/getting_started)
 * Icons from Bootstrap Icons
 
