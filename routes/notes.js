@@ -27,20 +27,12 @@ router.get('/', (req, res) => {
 
 router.post('/save', (req, res) => {
     console.log(req.body);
-    const newNote = new Note({user: req.session.user.user, title: req.body.title, font: req.body.fontlist, color: req.body.colorlist, text: req.body.noteContent, link:null, folder: null});
+    const newNote = new Note({user: req.session.user.user, title: req.body.title, font: req.body.fontlist, color: req.body.colorlist, text: req.body.noteContent, link:null});
     newNote.save(function(err){
         if(err){
             console.log(err);
             res.render('newNote.hbs', {error: err, user: req.session.user});
         }
-        //req.session.user.user.notes.push(newNote).save((err)=>{
-        //    if(err){
-        //        console.log(err);
-        //    }
-        //    else{
-        //        res.redirect('/notes');
-        //    }
-        //});
     });
     res.redirect('/notes');
 });
@@ -48,7 +40,7 @@ router.post('/save', (req, res) => {
 router.post('/save/:noteID', (req, res) => {
     const {noteID} = req.params;
     console.log(req.body);
-    const changes = {title: req.body.title, font: req.body.fontlist, color: req.body.colorlist, text: req.body.noteContent, link:null, folder: null};
+    const changes = {title: req.body.title, font: req.body.fontlist, color: req.body.colorlist, text: req.body.noteContent, link:null};
     Note.findByIdAndUpdate(noteID, changes, (err)=>{
         if(err){
             console.log(err);
@@ -99,9 +91,6 @@ router.get('/delete/:noteID', (req, res) => {
                                     item.linked = false;
                                     await item.set('link', undefined, {strict: false} );
                                     await item.save();
-                                    //await Item.find({list: list._id});
-                                    //console.log(items);
-                                    //list.items = items;
                                 }
                                 res.redirect("/notes");
                             };

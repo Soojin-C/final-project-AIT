@@ -55,7 +55,7 @@ router.post('/register', (req, res) => {
   const {username, password} = req.body;
 
   bcrypt.hash(password, saltRounds).then(function (hash) {
-    const newUser = new User({ user: username, token: hash, lists:[], folders:[], notes:[] });
+    const newUser = new User({ user: username, token: hash});
     newUser.save(function (err, newUser) {
       if (err) {
         console.log(err);
