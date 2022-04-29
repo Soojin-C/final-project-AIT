@@ -2,7 +2,8 @@ function main(){
     let count = 0;
     const addbtn = document.querySelector("#addItem");
     const list = document.querySelector("#items");
-    const host = "http://localhost:3000";
+    //const host = "http://localhost:3000";
+    const host = "http://serene-cliffs-35929.herokuapp.com";
 
     async function onAdd(evt){
         evt.preventDefault();
