@@ -9,36 +9,41 @@ Note Keeper is a web app that allows users to organize their thoughts and tasks 
 
 ## Data Model
 
-The application will store Users, Lists and Items
+The application will store Users, Lists, Folders, Items, Notes, NoteFolders
 
 * users can have multiple lists, folders and notes(via references)
-* each list can have multiple items (by embedding)
-* each folder can have multiple notes (by references)
+* each list can have multiple items (by references)
+* each folder can have multiple notes (by reference of the NoteFolders table)
+* exh note can be in multiple folders (by reference of the NoteFolders table)
 
 An Example User:
 
 ```javascript
 {
   user: "schoi",
-  token: // a password token for this specific user,
-  lists: // an array of references to List documents,
-  folders: // array of references to Folder documents,
-  notes: // array of references to Note documents
+  token: // a password hash for this specific user
 }
 ```
 
-An Example List with Embedded Items:
+An Example List:
 
 ```javascript
 {
   user: // a reference to a User object
   title: "Tasks for AIT",
-  font: //name of class that sets the font of choices,
-  color: "pink",
-  items: [
-    { num: 1, text: "Quiz 7", checked: false, linked:false, link: null},
-    { num: 2, text: "hw 5", checked: true, linked:true, link: //Note Reference},
-  ]
+  font: "f-<fontname>",
+  color: "c-pink"
+}
+```
+
+An Example Item:
+
+```javascript
+{
+  list: // a reference to a List object
+  text: "essay on the internet",
+  linked: true,
+  link: //a reference to a Note that is linked
 }
 ```
 
@@ -47,16 +52,12 @@ An Example Note:
 ```javascript
 {
   user: // a reference to a User object
-  id: //unique number for each note
   title: "Notes on Mongo",
   font: //name of class that sets the font of choices,
-  color: "pink",
+  color: "c-pink",
   text: "- Wow some notes and stuff
   - about some stuff
   - on the hw"
-  linked: true
-  link: //reference for List
-  folder: //reference for Folder
 }
 ```
 
@@ -67,10 +68,18 @@ An Example Folder:
   user: // a reference to a User object
   name: "Notes for hw",
   color: "pink",
-  notes: // Array of references to Note documents
 }
 ```
 
+An Example NoteFolder:
+
+```javascript
+{
+  user: // a reference to a User object
+  noteid: // a reference to a Note object
+  folderid: // a reference to a Folder object
+}
+```
 
 ## [Link to Commented First Draft Schema](db.js) 
 
@@ -130,6 +139,7 @@ An Example Folder:
     * I'm going to be using passport and JSON web tokens for user authentication and password decoding
 * (3 points) Perform Unit Tests with Mocha
     * Perform both client and server side unit testing
+    ![mochaTest](documentation/Mocha_test.png)
 * (2 points) Bootstrap
     * used Bootstrap as the frontend framework
 
@@ -138,12 +148,7 @@ An Example Folder:
 
 ## [Link to Initial Main Project File](app.js) 
 
-(__TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
-
 ## Annotations / References Used
-
-(__TODO__: list any tutorials/references/etc. that you've based your code off of_)
-
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
+* Fonts from Google Fonts
+* Icons from Bootstrap Icons
 
