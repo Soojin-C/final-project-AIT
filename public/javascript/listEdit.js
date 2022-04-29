@@ -1,7 +1,7 @@
 function main(){
     const all = document.getElementsByClassName("del");
     //const host = "http://localhost:3000";
-    const host = "http://serene-cliffs-35929.herokuapp.com";
+    const host = "https://serene-cliffs-35929.herokuapp.com";
     //console.log(all);
     let count = all.length;
     while (count !== 0){
