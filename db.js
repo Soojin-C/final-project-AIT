@@ -27,8 +27,7 @@ const Note = new mongoose.Schema({
 	title: {type: String, required: true},
 	font: {type: String, required: true},
 	color: {type: String, required: true},
-	text: {type: String},
-	folder: {type: mongoose.Schema.Types.ObjectId, ref:'Folder'}
+	text: {type: String}
 });
 
 const Folder = new mongoose.Schema({
