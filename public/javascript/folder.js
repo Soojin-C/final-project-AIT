@@ -1,6 +1,6 @@
 function main(){
     //const host = "http://localhost:3000";
-    const host = process.env.HOST;
+    const host = "https://notekeeper-final.herokuapp.com";
     const allNotes = document.getElementsByClassName("list-group-item");
     //console.log(allNotes);
     let count = allNotes.length;
