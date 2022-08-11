@@ -1,6 +1,6 @@
 function main(){
     //const host = "http://localhost:3000";
-    const host = "https://serene-cliffs-35929.herokuapp.com";
+    const host = process.env.HOST;
     const allNotes = document.getElementsByClassName("list-group-item");
     //console.log(allNotes);
     let count = allNotes.length;
